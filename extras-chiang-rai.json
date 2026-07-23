@@ -1,0 +1,125 @@
+{
+  "sites": [
+    {
+      "name": "Wat Rong Khun (Temple Blanc)",
+      "desc": "Le temple le plus célèbre de Chiang Rai.",
+      "price": "100 THB",
+      "hours": "08:00–17:00",
+      "tip": "Arriver tôt pour éviter les groupes.",
+      "lat": 19.8093,
+      "lng": 99.8047
+    },
+    {
+      "name": "Wat Rong Suea Ten (Temple Bleu)",
+      "desc": "Temple aux magnifiques décorations bleues.",
+      "price": "Gratuit",
+      "hours": "07:00–20:00",
+      "tip": "Superbe au coucher du soleil.",
+      "lat": 19.9276,
+      "lng": 99.8228
+    },
+    {
+      "name": "Baan Dam Museum",
+      "desc": "La célèbre Maison Noire.",
+      "price": "80 THB",
+      "hours": "09:00–17:00",
+      "tip": "Prévoir environ deux heures.",
+      "lat": 19.9754,
+      "lng": 99.8207
+    },
+    {
+      "name": "Triangle d'Or",
+      "desc": "Point de rencontre entre la Thaïlande, le Laos et le Myanmar.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Faire une balade en bateau sur le Mékong.",
+      "lat": 20.3560,
+      "lng": 100.0860
+    },
+    {
+      "name": "Choui Fong Tea Plantation",
+      "desc": "Plantations de thé avec vues panoramiques.",
+      "price": "Entrée libre",
+      "hours": "08:30–17:30",
+      "tip": "Goûter le thé matcha.",
+      "lat": 20.1180,
+      "lng": 99.7180
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚗",
+      "title": "Location de voiture",
+      "desc": "La meilleure solution pour explorer la région.",
+      "price": "900–1500 THB/jour",
+      "hours": "",
+      "tip": "Réserver à l'avance.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🛺",
+      "title": "Grab & Taxi",
+      "desc": "Disponible en ville.",
+      "price": "Selon trajet",
+      "hours": "24h/24",
+      "tip": "Comparer les prix.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🚌",
+      "title": "Bus locaux",
+      "desc": "Pour rejoindre les principales attractions.",
+      "price": "20–80 THB",
+      "hours": "Variable",
+      "tip": "Prévoir du temps."
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses et hôtels 2★",
+      "price": "500–1200 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Rai"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★",
+      "price": "1500–3000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Rai"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Le Méridien, The Legend…",
+      "price": "3500–6000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Rai"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Resorts haut de gamme",
+      "price": "7000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Rai"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "900–1600 THB/jour",
+      "desc": "Guesthouse, street food et bus."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2200–4000 THB/jour",
+      "desc": "Hôtel confortable et visites."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "6000 THB et +",
+      "desc": "Hôtels de luxe et excursions privées."
+    }
+  ]
+}

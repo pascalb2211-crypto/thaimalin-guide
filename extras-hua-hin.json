@@ -1,0 +1,127 @@
+{
+  "sites": [
+    {
+      "name": "Hua Hin Night Market",
+      "desc": "Marché nocturne emblématique avec street food et artisanat.",
+      "price": "Entrée libre",
+      "hours": "17h–23h",
+      "tip": "Venir vers 18h30 pour profiter de l'ambiance.",
+      "lat": 12.5700,
+      "lng": 99.9590
+    },
+    {
+      "name": "Khao Takiab",
+      "desc": "Temple perché sur Monkey Mountain avec superbe panorama.",
+      "price": "Entrée libre",
+      "hours": "6h–18h",
+      "tip": "Attention aux singes.",
+      "lat": 12.5290,
+      "lng": 99.9660
+    },
+    {
+      "name": "Cicada Market",
+      "desc": "Marché d'artisans, concerts et restauration.",
+      "price": "Entrée libre",
+      "hours": "Ven–Dim 16h–23h",
+      "tip": "À combiner avec Tamarind Market.",
+      "lat": 12.5540,
+      "lng": 99.9550
+    },
+    {
+      "name": "Vana Nava Water Jungle",
+      "desc": "Grand parc aquatique pour toute la famille.",
+      "price": "Environ 1200 THB",
+      "hours": "11h–17h",
+      "tip": "Acheter les billets en ligne pour payer moins cher.",
+      "lat": 12.5850,
+      "lng": 99.9280
+    },
+    {
+      "name": "Monsoon Valley Vineyard",
+      "desc": "Vignoble proposant dégustations et visites.",
+      "price": "Selon activité",
+      "hours": "9h–18h",
+      "tip": "Essayer le vin de Shiraz thaïlandais.",
+      "lat": 12.4200,
+      "lng": 99.9000
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚕",
+      "title": "Grab & Taxi",
+      "desc": "Solution la plus simple pour se déplacer.",
+      "price": "Selon trajet",
+      "hours": "24h/24",
+      "tip": "Comparer Grab et Bolt.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Idéal pour explorer les plages.",
+      "price": "200–350 THB/jour",
+      "hours": "",
+      "tip": "Toujours porter un casque.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚐",
+      "title": "Songthaew",
+      "desc": "Transport collectif local.",
+      "price": "10–20 THB",
+      "hours": "Toute la journée",
+      "tip": "Prévoir de la monnaie.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses du centre.",
+      "price": "600–1200 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hua+Hin"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels proches de la plage.",
+      "price": "1500–3000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hua+Hin"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Hyatt Regency • Marriott Resort",
+      "price": "3500–6000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hua+Hin"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "InterContinental • Anantara",
+      "price": "7000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hua+Hin"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "1000–1600 THB/jour",
+      "desc": "Street food, guesthouse et transports locaux."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2500–4500 THB/jour",
+      "desc": "Hôtel confortable, restaurants et quelques activités."
+    },
+    {
+      "icon": "💼",
+      "tier": "Budget élevé",
+      "price": "7000 THB et +",
+      "desc": "Hôtel de luxe, gastronomie et excursions."
+    }
+  ]
+}

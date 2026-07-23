@@ -1,0 +1,171 @@
+{
+  "sites": [
+    {
+      "name": "Grand Palace",
+      "desc": "L'ancien palais royal, le monument le plus emblématique de Bangkok.",
+      "price": "500 THB",
+      "hours": "08:30–15:30",
+      "tip": "Tenue correcte exigée (épaules et genoux couverts).",
+      "lat": 13.7500,
+      "lng": 100.4913
+    },
+    {
+      "name": "Wat Arun",
+      "desc": "Le Temple de l'Aube, célèbre pour sa tour centrale style khmer.",
+      "price": "100 THB",
+      "hours": "08:00–18:00",
+      "tip": "Traverser en ferry depuis Wat Pho pour une vue superbe au coucher du soleil.",
+      "lat": 13.7437,
+      "lng": 100.4888
+    },
+    {
+      "name": "Wat Pho",
+      "desc": "Temple du Bouddha couché, l'un des plus grands et des plus anciens de Bangkok.",
+      "price": "300 THB",
+      "hours": "08:00–18:30",
+      "tip": "Combiner avec la visite du Grand Palace, à quelques minutes à pied.",
+      "lat": 13.7468,
+      "lng": 100.4927
+    },
+    {
+      "name": "Chinatown (Yaowarat)",
+      "desc": "Quartier chinois animé, réputé pour sa street food et ses enseignes lumineuses.",
+      "price": "Gratuit",
+      "hours": "Animé surtout 18:00–00:00",
+      "tip": "Venir le ventre vide, en soirée, pour goûter un maximum de spécialités.",
+      "lat": 13.7404,
+      "lng": 100.5087
+    },
+    {
+      "name": "ICONSIAM",
+      "desc": "Centre commercial luxueux au bord du Chao Phraya avec marché flottant intérieur.",
+      "price": "Gratuit (accès)",
+      "hours": "10:00–22:00",
+      "tip": "Accessible facilement en bateau-navette gratuit depuis Sathorn.",
+      "lat": 13.7267,
+      "lng": 100.5099
+    },
+    {
+      "name": "Mahanakhon SkyWalk",
+      "desc": "Point de vue panoramique au sommet d'un gratte-ciel, sol en verre vertigineux.",
+      "price": "880 THB",
+      "hours": "10:00–24:00",
+      "tip": "Réserver en ligne à l'avance pour un tarif réduit.",
+      "lat": 13.7244,
+      "lng": 100.5288
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚆",
+      "title": "BTS Skytrain",
+      "desc": "Le moyen le plus rapide pour se déplacer dans les quartiers centraux.",
+      "price": "17 à 62 THB",
+      "hours": "05:30–00:00",
+      "tip": "Acheter une carte Rabbit pour éviter la file aux distributeurs.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚇",
+      "title": "MRT",
+      "desc": "Métro moderne reliant les principaux quartiers.",
+      "price": "17 à 43 THB",
+      "hours": "06:00–00:00",
+      "tip": "Pratique pour Chinatown et Chatuchak.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚕",
+      "title": "Grab",
+      "desc": "Application recommandée pour les taxis et VTC.",
+      "price": "Selon la distance",
+      "hours": "24h/24",
+      "tip": "Toujours utiliser Grab ou demander le compteur dans les taxis de rue.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "⛴️",
+      "title": "Bateau Chao Phraya",
+      "desc": "Idéal pour visiter les temples et le centre historique.",
+      "price": "16 à 45 THB",
+      "hours": "06:00–19:30",
+      "tip": "Le Tourist Boat (drapeau orange) dessert les principaux sites touristiques.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses et hôtels 2★ à Sukhumvit ou Silom.",
+      "price": "600–1200 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Bangkok"
+    },
+    {
+      "tier": "Confort",
+      "desc": "The Quarter Silom — bon rapport qualité/prix.",
+      "price": "1500–3000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Bangkok"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Grande Centre Point Surawong.",
+      "price": "3500–5000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Bangkok"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Eastin Grand Sathorn.",
+      "price": "6000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Bangkok"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "1150–1700 THB/jour",
+      "desc": "Street food, guesthouse et BTS/MRT."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2700–4600 THB/jour",
+      "desc": "Hôtel confort, restaurants et quelques activités."
+    },
+    {
+      "icon": "💼",
+      "tier": "Budget élevé",
+      "price": "5800 THB et +",
+      "desc": "Hôtel de luxe, gastronomie et déplacements en Grab."
+    }
+  ],
+  "itineraries": [
+    {
+      "days": "2 jours",
+      "description": "Grand Palace, Wat Pho, Chinatown, rooftop."
+    },
+    {
+      "days": "3 jours",
+      "description": "Ajouter ICONSIAM, Siam, croisière sur le Chao Phraya."
+    },
+    {
+      "days": "5 jours",
+      "description": "Explorer Ari, Talat Noi, Lumphini et plusieurs marchés."
+    },
+    {
+      "days": "7 jours",
+      "description": "Découverte complète avec excursions urbaines et quartiers moins connus."
+    }
+  ],
+  "tips": [
+    "Acheter une carte Rabbit pour le BTS.",
+    "Toujours utiliser Grab ou demander le compteur dans les taxis.",
+    "Prévoir de l'argent liquide pour les marchés.",
+    "Éviter les heures de pointe entre 7h30-9h00 et 17h00-19h00.",
+    "Respecter les codes vestimentaires dans les temples."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "sites": [
+    {"name":"Sanctuary of Truth","desc":"Immense structure entièrement en bois sculpté à la main, face à la mer.","price":"500 THB","hours":"8h–18h environ, tous les jours","tip":"Tenue correcte demandée (épaules et genoux couverts), prévoir 1h30 à 3h de visite.","lat":12.9660,"lng":100.8800},
+    {"name":"Big Buddha Hill (Khao Phra Tamnak)","desc":"Colline avec un grand Bouddha doré et vue sur toute la baie de Pattaya.","price":"Entrée libre","hours":"accessible toute la journée","tip":"Bon point de vue au coucher du soleil.","lat":12.9110,"lng":100.8720},
+    {"name":"Nong Nooch Tropical Garden","desc":"Jardin botanique tropical avec spectacles culturels thaïs (danses, éléphants).","price":"environ 500–600 THB avec spectacle","hours":"8h–18h environ","tip":"Prévoir une demi-journée, un peu excentré du centre de Pattaya.","lat":12.7330,"lng":100.9330},
+    {"name":"Koh Larn (Coral Island)","desc":"Île aux eaux turquoise à 30-45 minutes en bateau de Pattaya.","price":"ferry public environ 30–40 THB, speedboat plus cher","hours":"départs toute la journée depuis Bali Hai Pier","tip":"Le ferry public est nettement moins cher que les excursions organisées.","lat":12.9070,"lng":100.7830},
+    {"name":"Walking Street","desc":"Rue piétonne nocturne, bars, restaurants et ambiance festive.","price":"Entrée libre","hours":"animé surtout à partir de 20h","tip":"Ambiance très différente le jour et la nuit.","lat":12.9236,"lng":100.8745},
+    {"name":"Pattaya Floating Market","desc":"Marché flottant reconstitué, boutiques et petite restauration sur pilotis.","price":"environ 200 THB","hours":"9h–20h environ","tip":"Plus touristique qu'un vrai marché flottant traditionnel, mais photogénique.","lat":12.9450,"lng":100.9250}
+  ],
+  "transport": [
+    {"icon":"🚐","title":"Baht bus (songthaew)","desc":"Camionnettes partagées circulant le long de Beach Road et Second Road.","price":"environ 15–20 THB en ville, davantage vers Naklua/Jomtien","hours":"tôt le matin jusqu'à tard le soir","tip":"Fais signe pour monter, indique ta destination, paie en descendant.","buttonText":"","buttonUrl":""},
+    {"icon":"🚕","title":"Grab & Taxi","desc":"Pratique pour Naklua, Bang Saray et les trajets plus longs.","price":"","hours":"","tip":"Grab fonctionne bien à Pattaya. Les taxis de rue n'utilisent souvent pas de compteur : négocier avant de monter.","buttonText":"Télécharger Grab","buttonUrl":"https://www.grab.com/th/en/download/"},
+    {"icon":"🛵","title":"Location de scooter","desc":"Pratique pour explorer au-delà du centre (Jomtien, East Pattaya, Naklua).","price":"environ 150–250 THB/jour","hours":"","tip":"Casque obligatoire, trafic dense sur Beach Road à éviter aux heures de pointe.","buttonText":"","buttonUrl":""},
+    {"icon":"⛴️","title":"Ferry vers Koh Larn","desc":"Liaison régulière depuis Bali Hai Pier vers l'île de Koh Larn.","price":"ferry public environ 30–40 THB, speedboat 200–300 THB","hours":"départs fréquents en journée","tip":"Le ferry public est plus lent mais très économique.","buttonText":"","buttonUrl":""},
+    {"icon":"🚗","title":"Location de voiture","desc":"Utile pour Nong Nooch, Bang Saray ou une excursion à Bangkok.","price":"environ 800–1 200 THB/jour","hours":"","tip":"","buttonText":"","buttonUrl":""}
+  ],
+  "hotels": [
+    {"tier":"Économique","desc":"Guesthouses à Jomtien ou Central Pattaya.","price":"environ 500–1 200 THB/nuit","bookingUrl":"https://www.booking.com/searchresults.html?ss=Pattaya&nflt=class%3D2"},
+    {"tier":"Confort","desc":"Hôtels de Beach Road et Pratumnak.","price":"environ 1 200–2 800 THB/nuit","bookingUrl":"https://www.booking.com/searchresults.html?ss=Pattaya&nflt=class%3D3"},
+    {"tier":"Premium","desc":"Hilton Pattaya • Siam@Siam Design Hotel.","price":"environ 3 000–5 500 THB/nuit","bookingUrl":"https://www.booking.com/searchresults.html?ss=Pattaya&nflt=class%3D4"},
+    {"tier":"Luxe","desc":"Royal Cliff Beach Resort • InterContinental Pattaya Resort.","price":"à partir de 7 000 THB/nuit","bookingUrl":"https://www.booking.com/searchresults.html?ss=Pattaya&nflt=class%3D5"}
+  ],
+  "budget": [
+    {"icon":"🎒","tier":"Petit budget","price":"environ 900–1 500 THB/jour","desc":"Guesthouse, street food et food courts, baht bus, scooter en location partagée."},
+    {"icon":"🧳","tier":"Budget moyen","price":"environ 2 200–3 800 THB/jour","desc":"Hôtel confort, un restaurant avec vue ou un rooftop dans la journée, Grab, une excursion incluse (Koh Larn)."},
+    {"icon":"💼","tier":"Budget élevé","price":"à partir de 6 000 THB/jour","desc":"Hôtel premium/luxe, gastronomie régulière, voiture avec chauffeur, excursion Nong Nooch ou Sanctuary of Truth incluse."}
+  ]
+}

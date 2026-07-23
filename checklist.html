@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de départ — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Checklist interactive avant de partir en Thaïlande : documents, santé, argent, électronique, bagages et derniers préparatifs à la maison.">
+<link rel="canonical" href="https://thaimalin.fr/checklist">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Checklist de départ | Thaï Malin">
+<meta property="og:description" content="Tout ce qu'il ne faut pas oublier avant de partir en Thaïlande, coché au fur et à mesure.">
+<meta property="og:url" content="https://thaimalin.fr/checklist">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1800');}
+
+.progress-box{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:18px;margin-bottom:24px;text-align:center}
+.progress-box .pct{font-size:26px;font-weight:bold;color:var(--gold,#d4af37)}
+.progress-bar{background:#2a2f3a;border-radius:10px;height:14px;overflow:hidden;margin-top:10px}
+.progress-bar-fill{background:var(--gold,#d4af37);height:100%;transition:width .3s}
+
+.checklist-category{margin-bottom:24px}
+.checklist-category h2{border-bottom:1px solid #333;padding-bottom:8px}
+.check-item{display:flex;align-items:flex-start;gap:10px;background:#1a1e26;border:1px solid #333;border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.check-item input{margin-top:3px;width:18px;height:18px;accent-color:var(--gold,#d4af37);flex-shrink:0}
+.check-item label{flex:1;cursor:pointer}
+.check-item.checked label{color:#888;text-decoration:line-through}
+
+.checklist-actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.checklist-actions button{border:none;cursor:pointer}
+
+@media print{
+  header, .checklist-actions, footer { display:none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><a href="/"><img src="assets/logo-header.png" alt="Thaï Malin" style="height:44px;width:auto;display:block"></a></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="carnet.html">📔 Mon carnet de voyage</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>✅ Checklist de départ</h1>
+<p>Coche au fur et à mesure — ta progression est sauvegardée automatiquement sur cet appareil.</p>
+</div>
+</section>
+
+<section id="checklist">
+
+<div class="progress-box">
+  <p>Progression avant le départ</p>
+  <p class="pct" id="progressPct">0%</p>
+  <div class="progress-bar"><div class="progress-bar-fill" id="progressBarFill" style="width:0%"></div></div>
+</div>
+
+<div id="checklistContainer"></div>
+
+<div class="checklist-actions">
+  <button class="btn" onclick="window.print()">🖨️ Imprimer</button>
+  <button class="btn" id="resetChecklistBtn" style="background:transparent;border:1px solid var(--gold,#d4af37);color:#fff">🗑️ Tout décocher</button>
+</div>
+
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Checklist de départ — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== CHECKLIST ===================== */
+const CHECKLIST_KEY = 'thaimalin_checklist';
+
+const CATEGORIES = [
+  {
+    title: '📄 Documents',
+    items: [
+      'Passeport valide au moins 6 mois après la date de retour',
+      'Billets d\'avion (imprimés ou enregistrés hors ligne sur le téléphone)',
+      'Réservations d\'hôtels imprimées ou enregistrées',
+      'Assurance voyage souscrite (vérifier la couverture des activités nautiques si besoin)',
+      'Photocopie ou photo du passeport rangée séparément de l\'original',
+      'Permis de conduire international si location de scooter/voiture prévue',
+      'Adresse et numéro de l\'ambassade de France en Thaïlande enregistrés'
+    ]
+  },
+  {
+    title: '💊 Santé',
+    items: [
+      'Vaccins à jour vérifiés (aucun obligatoire pour la Thaïlande, mais à jour recommandé)',
+      'Trousse à pharmacie de base (antidouleur, anti-diarrhéique, pansements)',
+      'Anti-moustique efficace (DEET ou picaridine)',
+      'Crème solaire résistante à l\'eau, indice élevé',
+      'Ordonnances et traitements habituels en quantité suffisante pour tout le séjour',
+      'Carte ou attestation d\'assurance santé/voyage accessible facilement'
+    ]
+  },
+  {
+    title: '💰 Argent & cartes',
+    items: [
+      'Banque prévenue du voyage pour éviter un blocage de carte',
+      'Carte bancaire sans frais à l\'étranger si possible',
+      'Une carte de secours rangée séparément de la carte principale',
+      'Un peu de liquide en THB pour l\'arrivée (taxi, premiers repas)',
+      'Photo ou note des numéros de carte en cas de perte/vol'
+    ]
+  },
+  {
+    title: '📱 Électronique',
+    items: [
+      'Adaptateur de prise électrique universel',
+      'Batterie externe chargée',
+      'eSIM ou forfait data activé/prêt à activer à l\'arrivée',
+      'Chargeurs de tous les appareils',
+      'Photos/documents importants sauvegardés sur le cloud en plus du téléphone'
+    ]
+  },
+  {
+    title: '🧳 Bagages',
+    items: [
+      'Vêtements légers et respirants',
+      'Une tenue correcte pour les temples (épaules et genoux couverts)',
+      'Maillot de bain',
+      'Sac étanche pour les excursions en bateau',
+      'Chaussures de marche fermées en plus des tongs/sandales',
+      'Franchise bagage vérifiée pour les vols intérieurs low-cost'
+    ]
+  },
+  {
+    title: '🏠 Avant de fermer la porte',
+    items: [
+      'Un proche ou voisin prévenu de l\'absence',
+      'Courrier/colis suspendus ou gérés',
+      'Prises électriques non essentielles débranchées',
+      'Plantes arrosées ou confiées à quelqu\'un',
+      'Itinéraire et dates de voyage partagés avec un proche resté au pays'
+    ]
+  }
+];
+
+function loadChecked(){
+  try{ return JSON.parse(localStorage.getItem(CHECKLIST_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveChecked(state){
+  try{ localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state)); }
+  catch(e){ /* stockage indisponible */ }
+}
+
+let checkedState = loadChecked();
+
+function itemKey(catIndex, itemIndex){ return `${catIndex}-${itemIndex}`; }
+
+function renderChecklist(){
+  const container = document.getElementById('checklistContainer');
+  container.innerHTML = CATEGORIES.map((cat, ci) => `
+    <div class="checklist-category">
+      <h2>${cat.title}</h2>
+      ${cat.items.map((item, ii) => {
+        const key = itemKey(ci, ii);
+        const checked = !!checkedState[key];
+        return `
+          <div class="check-item${checked ? ' checked' : ''}">
+            <input type="checkbox" id="chk-${key}" data-key="${key}" ${checked ? 'checked' : ''}>
+            <label for="chk-${key}">${item}</label>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `).join('');
+
+  container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      checkedState[cb.dataset.key] = cb.checked;
+      saveChecked(checkedState);
+      cb.closest('.check-item').classList.toggle('checked', cb.checked);
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = CATEGORIES.reduce((s, c) => s + c.items.length, 0);
+  const done = Object.values(checkedState).filter(Boolean).length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressPct').textContent = `${pct}%`;
+  document.getElementById('progressBarFill').style.width = `${pct}%`;
+}
+
+document.getElementById('resetChecklistBtn').addEventListener('click', () => {
+  if(confirm('Tout décocher ? Cette action est irréversible.')){
+    checkedState = {};
+    saveChecked(checkedState);
+    renderChecklist();
+  }
+});
+
+renderChecklist();
+</script>
+</body>
+</html>

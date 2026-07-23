@@ -1,0 +1,127 @@
+{
+  "sites": [
+    {
+      "name": "Haad Rin Beach",
+      "desc": "Plage célèbre pour la Full Moon Party.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "À visiter hors Full Moon pour plus de calme.",
+      "lat": 9.6660,
+      "lng": 100.0670
+    },
+    {
+      "name": "Bottle Beach",
+      "desc": "L'une des plus belles plages de Koh Phangan.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Accessible en bateau ou par randonnée.",
+      "lat": 9.7960,
+      "lng": 100.0400
+    },
+    {
+      "name": "Koh Ma",
+      "desc": "Îlot relié à Mae Haad par un banc de sable.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Excellent spot de snorkeling.",
+      "lat": 9.7880,
+      "lng": 99.9700
+    },
+    {
+      "name": "Than Sadet Waterfall",
+      "desc": "Cascade située dans un parc national.",
+      "price": "300 THB",
+      "hours": "08:00–17:00",
+      "tip": "À visiter pendant la saison des pluies.",
+      "lat": 9.6980,
+      "lng": 100.0790
+    },
+    {
+      "name": "Phaeng Waterfall",
+      "desc": "Cascade avec point de vue panoramique.",
+      "price": "300 THB",
+      "hours": "08:00–17:00",
+      "tip": "Prévoir des chaussures adaptées.",
+      "lat": 9.7280,
+      "lng": 100.0180
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Le moyen le plus pratique pour explorer l'île.",
+      "price": "200–350 THB/jour",
+      "hours": "",
+      "tip": "Toujours porter un casque.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "⛴️",
+      "title": "Ferry",
+      "desc": "Liaisons avec Koh Samui, Koh Tao et le continent.",
+      "price": "Selon la compagnie",
+      "hours": "Selon les horaires",
+      "tip": "Réserver en haute saison.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚕",
+      "title": "Taxi Pickup",
+      "desc": "Taxis collectifs circulant sur l'île.",
+      "price": "Selon la distance",
+      "hours": "Toute la journée",
+      "tip": "Négocier le tarif avant le départ.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses et bungalows",
+      "price": "500–1200 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Phangan"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★ proches des plages",
+      "price": "1500–3000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Phangan"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Panviman, Buri Rasa…",
+      "price": "3500–6000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Phangan"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Resorts 5★ et villas",
+      "price": "7000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Phangan"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "900–1700 THB/jour",
+      "desc": "Bungalow simple, street food et scooter."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2500–4500 THB/jour",
+      "desc": "Hôtel confortable, restaurants et excursions."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "7000 THB et +",
+      "desc": "Resort haut de gamme et activités privées."
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "sites": [
+    {
+      "name": "Sairee Beach",
+      "desc": "La plage la plus animée de Koh Tao.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Magnifique coucher de soleil.",
+      "lat": 10.1035,
+      "lng": 99.8370
+    },
+    {
+      "name": "Shark Bay",
+      "desc": "Spot réputé pour observer les requins de récif.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Prévoir masque et tuba.",
+      "lat": 10.0680,
+      "lng": 99.8430
+    },
+    {
+      "name": "Ao Leuk",
+      "desc": "Baie idéale pour le snorkeling.",
+      "price": "Gratuit",
+      "hours": "Toute la journée",
+      "tip": "Eau très claire le matin.",
+      "lat": 10.0730,
+      "lng": 99.8480
+    },
+    {
+      "name": "John-Suwan Viewpoint",
+      "desc": "Point de vue panoramique sur le sud de l'île.",
+      "price": "100 THB",
+      "hours": "08:00–17:00",
+      "tip": "Prévoir des chaussures fermées.",
+      "lat": 10.0550,
+      "lng": 99.8400
+    },
+    {
+      "name": "Koh Nang Yuan",
+      "desc": "Petite île paradisiaque au nord de Koh Tao.",
+      "price": "250 THB",
+      "hours": "08:00–17:00",
+      "tip": "Arriver tôt pour éviter la foule.",
+      "lat": 10.1080,
+      "lng": 99.8150
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Le moyen le plus pratique pour explorer l'île.",
+      "price": "200–350 THB/jour",
+      "hours": "",
+      "tip": "Port du casque indispensable.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "⛴️",
+      "title": "Ferry",
+      "desc": "Liaisons avec Koh Samui, Koh Phangan et Chumphon.",
+      "price": "Selon compagnie",
+      "hours": "Selon horaires",
+      "tip": "Réserver en haute saison.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚕",
+      "title": "Taxi Pickup",
+      "desc": "Taxis collectifs présents sur l'île.",
+      "price": "Selon trajet",
+      "hours": "Toute la journée",
+      "tip": "Demander le tarif avant de monter.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses et bungalows",
+      "price": "500–1200 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Tao"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★",
+      "price": "1500–3000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Tao"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Jamahkiri, Haadtien...",
+      "price": "3500–6000 THB",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Tao"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Resorts et villas",
+      "price": "7000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Tao"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "900–1700 THB/jour",
+      "desc": "Bungalow simple, street food et scooter."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2500–4500 THB/jour",
+      "desc": "Hôtel confortable, plongée et restaurants."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "7000 THB et +",
+      "desc": "Resort de luxe, excursions privées et plongées."
+    }
+  ]
+}

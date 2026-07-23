@@ -1,0 +1,847 @@
+{
+  "title": "Mini Guide de Survie en Thaï",
+  "version": "1.0",
+  "totalPhrases": 150,
+  "categories": [
+    {
+      "id": "bases",
+      "title": "👋 Les bases",
+      "phrases": [
+        {
+          "fr": "Bonjour",
+          "th": "สวัสดีครับ / สวัสดีค่ะ",
+          "phonetic": "Sawasdee khrap / Sawasdee kha"
+        },
+        {
+          "fr": "Bonsoir",
+          "th": "สวัสดีตอนเย็น",
+          "phonetic": "Sawasdee ton yen"
+        },
+        {
+          "fr": "Au revoir",
+          "th": "ลาก่อน",
+          "phonetic": "La gon"
+        },
+        {
+          "fr": "Merci",
+          "th": "ขอบคุณครับ / ค่ะ",
+          "phonetic": "Khop khun khrap / kha"
+        },
+        {
+          "fr": "De rien",
+          "th": "ไม่เป็นไร",
+          "phonetic": "Mai pen rai"
+        },
+        {
+          "fr": "Oui",
+          "th": "ใช่",
+          "phonetic": "Chai"
+        },
+        {
+          "fr": "Non",
+          "th": "ไม่",
+          "phonetic": "Mai"
+        },
+        {
+          "fr": "Excusez-moi",
+          "th": "ขอโทษ",
+          "phonetic": "Khor thot"
+        },
+        {
+          "fr": "Pardon",
+          "th": "ขอทาง",
+          "phonetic": "Kho thang"
+        },
+        {
+          "fr": "Je ne comprends pas",
+          "th": "ฉันไม่เข้าใจ",
+          "phonetic": "Chan mai khao jai"
+        }
+      ]
+    },
+    {
+      "id": "restaurant",
+      "title": "🍜 Restaurant",
+      "phrases": [
+        {
+          "fr": "Je voudrais...",
+          "th": "เอา...",
+          "phonetic": "Ao..."
+        },
+        {
+          "fr": "La carte",
+          "th": "เมนู",
+          "phonetic": "Menu"
+        },
+        {
+          "fr": "Sans piment",
+          "th": "ไม่เผ็ด",
+          "phonetic": "Mai phet"
+        },
+        {
+          "fr": "Peu épicé",
+          "th": "เผ็ดน้อย",
+          "phonetic": "Phet noi"
+        },
+        {
+          "fr": "Très épicé",
+          "th": "เผ็ดมาก",
+          "phonetic": "Phet mak"
+        },
+        {
+          "fr": "De l'eau",
+          "th": "น้ำ",
+          "phonetic": "Nam"
+        },
+        {
+          "fr": "Une bière",
+          "th": "เบียร์",
+          "phonetic": "Bia"
+        },
+        {
+          "fr": "L'addition",
+          "th": "เช็คบิล",
+          "phonetic": "Check bin"
+        },
+        {
+          "fr": "C'est délicieux",
+          "th": "อร่อย",
+          "phonetic": "Aroi"
+        },
+        {
+          "fr": "Végétarien",
+          "th": "มังสวิรัติ",
+          "phonetic": "Mang sa wi rat"
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "title": "🚕 Transport",
+      "phrases": [
+        {
+          "fr": "Où est... ?",
+          "th": "...อยู่ที่ไหน",
+          "phonetic": "Yu thi nai"
+        },
+        {
+          "fr": "Combien ?",
+          "th": "เท่าไหร่",
+          "phonetic": "Tao rai"
+        },
+        {
+          "fr": "Taxi",
+          "th": "แท็กซี่",
+          "phonetic": "Taxi"
+        },
+        {
+          "fr": "Bus",
+          "th": "รถบัส",
+          "phonetic": "Rot bus"
+        },
+        {
+          "fr": "Ferry",
+          "th": "เรือเฟอร์รี่",
+          "phonetic": "Ruea ferry"
+        },
+        {
+          "fr": "Aéroport",
+          "th": "สนามบิน",
+          "phonetic": "Sanam bin"
+        },
+        {
+          "fr": "Gare",
+          "th": "สถานี",
+          "phonetic": "Sathani"
+        },
+        {
+          "fr": "À droite",
+          "th": "ขวา",
+          "phonetic": "Khwa"
+        },
+        {
+          "fr": "À gauche",
+          "th": "ซ้าย",
+          "phonetic": "Sai"
+        },
+        {
+          "fr": "Tout droit",
+          "th": "ตรงไป",
+          "phonetic": "Trong pai"
+        }
+      ]
+    },
+    {
+      "id": "hotel",
+      "title": "🏨 Hôtel",
+      "phrases": [
+        {
+          "fr": "J'ai une réservation",
+          "th": "ฉันมีการจอง",
+          "phonetic": "Chan mi kan jong"
+        },
+        {
+          "fr": "Ma chambre",
+          "th": "ห้องพัก",
+          "phonetic": "Hong phak"
+        },
+        {
+          "fr": "Clé",
+          "th": "กุญแจ",
+          "phonetic": "Kun jae"
+        },
+        {
+          "fr": "Wi‑Fi",
+          "th": "ไวไฟ",
+          "phonetic": "Wi-Fi"
+        },
+        {
+          "fr": "Climatisation",
+          "th": "แอร์",
+          "phonetic": "Air"
+        },
+        {
+          "fr": "Petit-déjeuner",
+          "th": "อาหารเช้า",
+          "phonetic": "Ahan chao"
+        },
+        {
+          "fr": "Serviette",
+          "th": "ผ้าเช็ดตัว",
+          "phonetic": "Pha chet tua"
+        },
+        {
+          "fr": "Piscine",
+          "th": "สระว่ายน้ำ",
+          "phonetic": "Sa wai nam"
+        },
+        {
+          "fr": "Check-in",
+          "th": "เช็คอิน",
+          "phonetic": "Check in"
+        },
+        {
+          "fr": "Check-out",
+          "th": "เช็คเอาท์",
+          "phonetic": "Check out"
+        }
+      ]
+    },
+    {
+      "id": "urgence",
+      "title": "🚑 Urgences",
+      "phrases": [
+        {
+          "fr": "Appelez une ambulance",
+          "th": "เรียกรถพยาบาล",
+          "phonetic": "Riak rot phayaban"
+        },
+        {
+          "fr": "Appelez la police",
+          "th": "เรียกตำรวจ",
+          "phonetic": "Riak tamruat"
+        },
+        {
+          "fr": "J'ai besoin d'un médecin",
+          "th": "ฉันต้องการหมอ",
+          "phonetic": "Chan tongkan mo"
+        },
+        {
+          "fr": "Pharmacie",
+          "th": "ร้านขายยา",
+          "phonetic": "Ran khai ya"
+        },
+        {
+          "fr": "Hôpital",
+          "th": "โรงพยาบาล",
+          "phonetic": "Rong phayaban"
+        },
+        {
+          "fr": "J'ai mal",
+          "th": "ฉันเจ็บ",
+          "phonetic": "Chan jep"
+        },
+        {
+          "fr": "Aidez-moi !",
+          "th": "ช่วยด้วย",
+          "phonetic": "Chuay duay"
+        },
+        {
+          "fr": "Je suis allergique",
+          "th": "ฉันแพ้",
+          "phonetic": "Chan phae"
+        },
+        {
+          "fr": "J'ai perdu mon passeport",
+          "th": "ฉันทำหนังสือเดินทางหาย",
+          "phonetic": "Chan tham nangsue dernthang hai"
+        },
+        {
+          "fr": "Urgence",
+          "th": "ฉุกเฉิน",
+          "phonetic": "Chuk choen"
+        }
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": "🛍️ Shopping",
+      "phrases": [
+        {
+          "fr": "Combien ça coûte ?",
+          "th": "ราคาเท่าไหร่",
+          "phonetic": "Raka tao rai"
+        },
+        {
+          "fr": "C'est trop cher",
+          "th": "แพงเกินไป",
+          "phonetic": "Paeng koen pai"
+        },
+        {
+          "fr": "Pouvez-vous baisser le prix ?",
+          "th": "ลดราคาได้ไหม",
+          "phonetic": "Lot raka dai mai"
+        },
+        {
+          "fr": "Je le prends",
+          "th": "เอาอันนี้",
+          "phonetic": "Ao an ni"
+        },
+        {
+          "fr": "Je regarde seulement",
+          "th": "ขอดูก่อน",
+          "phonetic": "Kho du kon"
+        },
+        {
+          "fr": "Avez-vous une autre couleur ?",
+          "th": "มีสีอื่นไหม",
+          "phonetic": "Mi si uen mai"
+        },
+        {
+          "fr": "Carte bancaire",
+          "th": "บัตรเครดิต",
+          "phonetic": "Bat credit"
+        },
+        {
+          "fr": "Espèces",
+          "th": "เงินสด",
+          "phonetic": "Ngeun sot"
+        },
+        {
+          "fr": "Marché",
+          "th": "ตลาด",
+          "phonetic": "Talat"
+        },
+        {
+          "fr": "Sac",
+          "th": "ถุง",
+          "phonetic": "Thung"
+        }
+      ]
+    },
+    {
+      "id": "plage",
+      "title": "🏖️ Plage",
+      "phrases": [
+        {
+          "fr": "Où est la plage ?",
+          "th": "ชายหาดอยู่ที่ไหน",
+          "phonetic": "Chai hat yu thi nai"
+        },
+        {
+          "fr": "Peut-on nager ?",
+          "th": "ว่ายน้ำได้ไหม",
+          "phonetic": "Wai nam dai mai"
+        },
+        {
+          "fr": "Snorkeling",
+          "th": "ดำน้ำตื้น",
+          "phonetic": "Dam nam tuen"
+        },
+        {
+          "fr": "Plongée",
+          "th": "ดำน้ำ",
+          "phonetic": "Dam nam"
+        },
+        {
+          "fr": "Kayak",
+          "th": "เรือคายัค",
+          "phonetic": "Ruea kayak"
+        },
+        {
+          "fr": "Gilet de sauvetage",
+          "th": "เสื้อชูชีพ",
+          "phonetic": "Suea chu chiip"
+        },
+        {
+          "fr": "Marée haute",
+          "th": "น้ำขึ้น",
+          "phonetic": "Nam kheun"
+        },
+        {
+          "fr": "Marée basse",
+          "th": "น้ำลง",
+          "phonetic": "Nam long"
+        },
+        {
+          "fr": "Attention aux méduses",
+          "th": "ระวังแมงกะพรุน",
+          "phonetic": "Rawang maeng kaprun"
+        },
+        {
+          "fr": "Où louer un kayak ?",
+          "th": "เช่าคายัคที่ไหน",
+          "phonetic": "Chao kayak thi nai"
+        }
+      ]
+    },
+    {
+      "id": "temple",
+      "title": "🛕 Temple",
+      "phrases": [
+        {
+          "fr": "Puis-je entrer ?",
+          "th": "เข้าได้ไหม",
+          "phonetic": "Khao dai mai"
+        },
+        {
+          "fr": "Dois-je enlever mes chaussures ?",
+          "th": "ต้องถอดรองเท้าไหม",
+          "phonetic": "Tong thot rong thao mai"
+        },
+        {
+          "fr": "Puis-je prendre des photos ?",
+          "th": "ถ่ายรูปได้ไหม",
+          "phonetic": "Thai roup dai mai"
+        },
+        {
+          "fr": "Merci de respecter le temple",
+          "th": "กรุณาเคารพวัด",
+          "phonetic": "Karuna khaorop wat"
+        },
+        {
+          "fr": "Temple",
+          "th": "วัด",
+          "phonetic": "Wat"
+        },
+        {
+          "fr": "Moine",
+          "th": "พระ",
+          "phonetic": "Phra"
+        },
+        {
+          "fr": "Bouddha",
+          "th": "พระพุทธ",
+          "phonetic": "Phra Phuttha"
+        },
+        {
+          "fr": "Offrande",
+          "th": "ของถวาย",
+          "phonetic": "Khong thawai"
+        },
+        {
+          "fr": "Silence",
+          "th": "เงียบ",
+          "phonetic": "Ngiap"
+        },
+        {
+          "fr": "Entrée",
+          "th": "ทางเข้า",
+          "phonetic": "Thang khao"
+        }
+      ]
+    },
+    {
+      "id": "argent",
+      "title": "💰 Argent",
+      "phrases": [
+        {
+          "fr": "Distributeur",
+          "th": "ตู้เอทีเอ็ม",
+          "phonetic": "Tu ATM"
+        },
+        {
+          "fr": "Changer de l'argent",
+          "th": "แลกเงิน",
+          "phonetic": "Laek ngeun"
+        },
+        {
+          "fr": "Reçu",
+          "th": "ใบเสร็จ",
+          "phonetic": "Bai set"
+        },
+        {
+          "fr": "Monnaie",
+          "th": "เงินทอน",
+          "phonetic": "Ngeun thon"
+        },
+        {
+          "fr": "Combien dois-je payer ?",
+          "th": "ต้องจ่ายเท่าไหร่",
+          "phonetic": "Tong jai tao rai"
+        },
+        {
+          "fr": "Paiement",
+          "th": "ชำระเงิน",
+          "phonetic": "Chamra ngeun"
+        },
+        {
+          "fr": "Carte",
+          "th": "บัตร",
+          "phonetic": "Bat"
+        },
+        {
+          "fr": "Baht",
+          "th": "บาท",
+          "phonetic": "Baht"
+        },
+        {
+          "fr": "Taux de change",
+          "th": "อัตราแลกเปลี่ยน",
+          "phonetic": "Attra laek plian"
+        },
+        {
+          "fr": "Merci beaucoup",
+          "th": "ขอบคุณมาก",
+          "phonetic": "Khop khun mak"
+        }
+      ]
+    },
+    {
+      "id": "cafe",
+      "title": "☕ Café",
+      "phrases": [
+        {
+          "fr": "Un café",
+          "th": "กาแฟ",
+          "phonetic": "Kafae"
+        },
+        {
+          "fr": "Un thé",
+          "th": "ชา",
+          "phonetic": "Cha"
+        },
+        {
+          "fr": "Glacé",
+          "th": "เย็น",
+          "phonetic": "Yen"
+        },
+        {
+          "fr": "Chaud",
+          "th": "ร้อน",
+          "phonetic": "Ron"
+        },
+        {
+          "fr": "Avec du lait",
+          "th": "ใส่นม",
+          "phonetic": "Sai nom"
+        },
+        {
+          "fr": "Sans sucre",
+          "th": "ไม่ใส่น้ำตาล",
+          "phonetic": "Mai sai namtan"
+        },
+        {
+          "fr": "Très bon",
+          "th": "อร่อยมาก",
+          "phonetic": "Aroi mak"
+        },
+        {
+          "fr": "À emporter",
+          "th": "ใส่กลับบ้าน",
+          "phonetic": "Sai klap ban"
+        },
+        {
+          "fr": "Sur place",
+          "th": "ทานที่นี่",
+          "phonetic": "Than thi ni"
+        },
+        {
+          "fr": "Bonne journée",
+          "th": "ขอให้เป็นวันที่ดี",
+          "phonetic": "Kho hai pen wan thi di"
+        }
+      ]
+    },
+    {
+      "id": "aeroport",
+      "title": "✈️ Aéroport",
+      "phrases": [
+        {
+          "fr": "Où est l'enregistrement ?",
+          "th": "เช็คอินอยู่ที่ไหน",
+          "phonetic": "Check in yu thi nai"
+        },
+        {
+          "fr": "Carte d'embarquement",
+          "th": "บัตรขึ้นเครื่อง",
+          "phonetic": "Bat kheun khrueang"
+        },
+        {
+          "fr": "Bagages",
+          "th": "กระเป๋าเดินทาง",
+          "phonetic": "Krapao dernthang"
+        },
+        {
+          "fr": "Contrôle de sécurité",
+          "th": "ตรวจความปลอดภัย",
+          "phonetic": "Truat khwam plodphai"
+        },
+        {
+          "fr": "Porte d'embarquement",
+          "th": "ประตูขึ้นเครื่อง",
+          "phonetic": "Pratu kheun khrueang"
+        },
+        {
+          "fr": "Vol retardé",
+          "th": "เที่ยวบินล่าช้า",
+          "phonetic": "Thiao bin la cha"
+        },
+        {
+          "fr": "Vol annulé",
+          "th": "เที่ยวบินยกเลิก",
+          "phonetic": "Thiao bin yok loek"
+        },
+        {
+          "fr": "Passeport",
+          "th": "หนังสือเดินทาง",
+          "phonetic": "Nangsue dernthang"
+        },
+        {
+          "fr": "Douane",
+          "th": "ศุลกากร",
+          "phonetic": "Sunkakorn"
+        },
+        {
+          "fr": "Où récupérer les bagages ?",
+          "th": "รับกระเป๋าที่ไหน",
+          "phonetic": "Rap krapao thi nai"
+        }
+      ]
+    },
+    {
+      "id": "plongee",
+      "title": "🤿 Plongée",
+      "phrases": [
+        {
+          "fr": "Je veux plonger",
+          "th": "ฉันอยากดำน้ำ",
+          "phonetic": "Chan yak dam nam"
+        },
+        {
+          "fr": "Location de masque",
+          "th": "เช่าหน้ากาก",
+          "phonetic": "Chao na kak"
+        },
+        {
+          "fr": "Bouteille",
+          "th": "ถังอากาศ",
+          "phonetic": "Thang akat"
+        },
+        {
+          "fr": "Profondeur",
+          "th": "ความลึก",
+          "phonetic": "Khwam luek"
+        },
+        {
+          "fr": "Poisson",
+          "th": "ปลา",
+          "phonetic": "Pla"
+        },
+        {
+          "fr": "Corail",
+          "th": "ปะการัง",
+          "phonetic": "Pa ka rang"
+        },
+        {
+          "fr": "Courant",
+          "th": "กระแสน้ำ",
+          "phonetic": "Krasae nam"
+        },
+        {
+          "fr": "Requin",
+          "th": "ฉลาม",
+          "phonetic": "Chalam"
+        },
+        {
+          "fr": "Tortue",
+          "th": "เต่า",
+          "phonetic": "Tao"
+        },
+        {
+          "fr": "Guide",
+          "th": "ไกด์",
+          "phonetic": "Guide"
+        }
+      ]
+    },
+    {
+      "id": "sante",
+      "title": "🏥 Santé",
+      "phrases": [
+        {
+          "fr": "J'ai de la fièvre",
+          "th": "ฉันมีไข้",
+          "phonetic": "Chan mi khai"
+        },
+        {
+          "fr": "J'ai mal à la tête",
+          "th": "ฉันปวดหัว",
+          "phonetic": "Chan puat hua"
+        },
+        {
+          "fr": "J'ai mal au ventre",
+          "th": "ฉันปวดท้อง",
+          "phonetic": "Chan puat thong"
+        },
+        {
+          "fr": "Médicament",
+          "th": "ยา",
+          "phonetic": "Ya"
+        },
+        {
+          "fr": "Ordonnance",
+          "th": "ใบสั่งยา",
+          "phonetic": "Bai sang ya"
+        },
+        {
+          "fr": "Allergie",
+          "th": "แพ้",
+          "phonetic": "Phae"
+        },
+        {
+          "fr": "Clinique",
+          "th": "คลินิก",
+          "phonetic": "Clinic"
+        },
+        {
+          "fr": "Urgent",
+          "th": "ด่วน",
+          "phonetic": "Duan"
+        },
+        {
+          "fr": "Je me sens mal",
+          "th": "ฉันรู้สึกไม่ดี",
+          "phonetic": "Chan rusuek mai di"
+        },
+        {
+          "fr": "Merci docteur",
+          "th": "ขอบคุณคุณหมอ",
+          "phonetic": "Khop khun khun mo"
+        }
+      ]
+    },
+    {
+      "id": "vie_nocturne",
+      "title": "🍹 Vie nocturne",
+      "phrases": [
+        {
+          "fr": "Un cocktail",
+          "th": "ค็อกเทล",
+          "phonetic": "Cocktail"
+        },
+        {
+          "fr": "Santé !",
+          "th": "ชนแก้ว",
+          "phonetic": "Chon kaeo"
+        },
+        {
+          "fr": "Musique",
+          "th": "ดนตรี",
+          "phonetic": "Dontri"
+        },
+        {
+          "fr": "Danser",
+          "th": "เต้น",
+          "phonetic": "Ten"
+        },
+        {
+          "fr": "Où sont les toilettes ?",
+          "th": "ห้องน้ำอยู่ที่ไหน",
+          "phonetic": "Hong nam yu thi nai"
+        },
+        {
+          "fr": "Bar",
+          "th": "บาร์",
+          "phonetic": "Bar"
+        },
+        {
+          "fr": "Boîte de nuit",
+          "th": "ไนต์คลับ",
+          "phonetic": "Night club"
+        },
+        {
+          "fr": "Happy hour",
+          "th": "แฮปปี้อาวร์",
+          "phonetic": "Happy hour"
+        },
+        {
+          "fr": "Encore un verre",
+          "th": "อีกแก้ว",
+          "phonetic": "Ik kaeo"
+        },
+        {
+          "fr": "Je rentre à l'hôtel",
+          "th": "ฉันกลับโรงแรม",
+          "phonetic": "Chan klap rongraem"
+        }
+      ]
+    },
+    {
+      "id": "tourisme",
+      "title": "📸 Tourisme",
+      "phrases": [
+        {
+          "fr": "Prenez une photo",
+          "th": "ช่วยถ่ายรูป",
+          "phonetic": "Chuay thai roup"
+        },
+        {
+          "fr": "Très beau",
+          "th": "สวยมาก",
+          "phonetic": "Suai mak"
+        },
+        {
+          "fr": "Où est ce monument ?",
+          "th": "...อยู่ที่ไหน",
+          "phonetic": "Yu thi nai"
+        },
+        {
+          "fr": "Billet",
+          "th": "ตั๋ว",
+          "phonetic": "Tua"
+        },
+        {
+          "fr": "Entrée",
+          "th": "ทางเข้า",
+          "phonetic": "Thang khao"
+        },
+        {
+          "fr": "Sortie",
+          "th": "ทางออก",
+          "phonetic": "Thang ok"
+        },
+        {
+          "fr": "Guide touristique",
+          "th": "ไกด์นำเที่ยว",
+          "phonetic": "Guide nam thiao"
+        },
+        {
+          "fr": "Ouvert aujourd'hui ?",
+          "th": "เปิดวันนี้ไหม",
+          "phonetic": "Poet wan ni mai"
+        },
+        {
+          "fr": "À quelle heure ?",
+          "th": "กี่โมง",
+          "phonetic": "Ki mong"
+        },
+        {
+          "fr": "Merci pour votre aide",
+          "th": "ขอบคุณสำหรับความช่วยเหลือ",
+          "phonetic": "Khop khun samrap khwam chuay luea"
+        }
+      ]
+    }
+  ]
+}
