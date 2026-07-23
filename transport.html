@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparatif transports entre villes — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Distances, durées et compagnies pour se déplacer entre Bangkok, Phuket, Krabi, Koh Samui, Chiang Mai, Pattaya, Hua Hin, Koh Tao, Koh Phangan et Chiang Rai.">
+<link rel="canonical" href="https://thaimalin.fr/transport">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Comparatif transports entre villes | Thaï Malin">
+<meta property="og:description" content="Distances, durées et compagnies pour se déplacer entre les 10 destinations du guide.">
+<meta property="og:url" content="https://thaimalin.fr/transport">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1800');}
+
+.route-picker{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px}
+.route-picker select{padding:10px 14px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:15px}
+.route-picker button{border:none;cursor:pointer}
+.route-swap{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;border-radius:50%;width:38px;height:38px;font-size:16px}
+
+.mode-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:16px;margin-bottom:12px}
+.mode-card .mode-title{font-size:17px;font-weight:bold;color:var(--gold,#d4af37);margin:0 0 4px}
+.mode-card .mode-duration{font-size:14px;color:#ccc;margin:0 0 6px}
+.mode-card .mode-companies{font-size:13px;color:#aaa;margin:0}
+
+.distance-line{font-size:14px;color:#aaa;margin-bottom:20px}
+.route-warning{background:#2a1e1e;border:1px solid #6a3a3a;border-radius:14px;padding:14px;margin-bottom:16px;color:#e0a0a0;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="budget.html">💰 Suivi budget</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🚌 Comparatif transports</h1>
+<p>Choisis deux destinations pour voir la distance, les temps de trajet et les compagnies qui desservent la liaison.</p>
+</div>
+</section>
+
+<section id="transport-compare">
+<h2>Entre quelles villes veux-tu voyager ?</h2>
+<div class="route-picker">
+  <select id="fromCity"></select>
+  <button class="route-swap" id="swapBtn" title="Inverser">⇄</button>
+  <select id="toCity"></select>
+</div>
+<div id="routeResult"></div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Comparatif transports — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== DONNÉES ===================== */
+const CITIES = {
+  'bangkok':      { label:'🏯 Bangkok',      lat:13.7563, lng:100.5018 },
+  'phuket':       { label:'🏝️ Phuket',       lat:7.9519,  lng:98.3381  },
+  'krabi':        { label:'🧗 Krabi',        lat:8.0500,  lng:98.9000  },
+  'koh-samui':    { label:'🏖️ Koh Samui',    lat:9.5119,  lng:100.0136 },
+  'chiang-mai':   { label:'⛰️ Chiang Mai',   lat:18.7883, lng:98.9853  },
+  'pattaya':      { label:'🌃 Pattaya',      lat:12.9300, lng:100.8850 },
+  'hua-hin':      { label:'🏯 Hua Hin',      lat:12.5684, lng:99.9577  },
+  'koh-tao':      { label:'🐢 Koh Tao',      lat:10.0980, lng:99.8406  },
+  'koh-phangan':  { label:'🏝️ Koh Phangan',  lat:9.7317,  lng:100.0136 },
+  'chiang-rai':   { label:'⛰️ Chiang Rai',   lat:19.9105, lng:99.8406  }
+};
+
+// Routes directes connues, clé = villes triées alphabétiquement séparées par '|'
+const ROUTES = {
+  'bangkok|chiang-mai': [
+    { icon:'✈️', label:'Avion', duration:'1h20', companies:'Thai AirAsia, Nok Air, Thai Vietjet, Thai Lion Air, Thai Airways' },
+    { icon:'🚆', label:'Train de nuit', duration:'12–14h', companies:'State Railway of Thailand (SRT)' },
+    { icon:'🚌', label:'Bus', duration:'9–10h', companies:'Green Bus, Nakhonchai Air' }
+  ],
+  'bangkok|chiang-rai': [
+    { icon:'✈️', label:'Avion', duration:'1h30', companies:'Thai AirAsia, Nok Air, Thai Lion Air' },
+    { icon:'🚌', label:'Bus', duration:'11–12h', companies:'Green Bus, Nakhonchai Air' }
+  ],
+  'bangkok|phuket': [
+    { icon:'✈️', label:'Avion', duration:'1h20', companies:'Thai AirAsia, Nok Air, Thai Vietjet, Thai Lion Air, Thai Airways' },
+    { icon:'🚌', label:'Bus', duration:'12–13h', companies:'Nakhonchai Air' }
+  ],
+  'bangkok|krabi': [
+    { icon:'✈️', label:'Avion', duration:'1h20', companies:'Thai AirAsia, Nok Air, Thai Lion Air' },
+    { icon:'🚌', label:'Bus', duration:'11–12h', companies:'Nakhonchai Air' }
+  ],
+  'bangkok|koh-samui': [
+    { icon:'✈️', label:'Avion direct', duration:'1h20', companies:'Bangkok Airways' },
+    { icon:'✈️⛴️', label:'Avion + ferry (via Surat Thani)', duration:'~4–5h au total', companies:'Thai AirAsia/Nok Air + Lomprayah, Seatran, Raja Ferry' }
+  ],
+  'bangkok|pattaya': [
+    { icon:'🚐', label:'Minivan partagé', duration:'2h', companies:'Bell Travel Service et minivans partagés (Victory Monument, Ekamai)' },
+    { icon:'🚆', label:'Train', duration:'3h', companies:'State Railway of Thailand (SRT)' }
+  ],
+  'bangkok|hua-hin': [
+    { icon:'🚐', label:'Minivan partagé', duration:'3h', companies:'Minivans partagés (Victory Monument, Mo Chit)' },
+    { icon:'🚆', label:'Train', duration:'3h30–4h', companies:'State Railway of Thailand (SRT)' }
+  ],
+  'bangkok|koh-tao': [
+    { icon:'🚌⛴️', label:'Bus de nuit + ferry (via Chumphon)', duration:'~10h au total', companies:'Bus de nuit + Lomprayah, Songserm' }
+  ],
+  'bangkok|koh-phangan': [
+    { icon:'🚌⛴️', label:'Bus/train de nuit + ferry (via Surat Thani)', duration:'~10–11h au total', companies:'Bus/train de nuit + Lomprayah, Seatran Discovery' }
+  ],
+  'krabi|phuket': [
+    { icon:'🚐', label:'Minivan partagé', duration:'2–3h', companies:'Minivans partagés' }
+  ],
+  'chiang-mai|chiang-rai': [
+    { icon:'🚌', label:'Bus', duration:'3h', companies:'Green Bus' },
+    { icon:'🚗', label:'Voiture de location', duration:'3h', companies:'Location libre' }
+  ],
+  'koh-phangan|koh-samui': [
+    { icon:'⛴️', label:'Ferry', duration:'30min–1h', companies:'Lomprayah, Seatran Discovery, Raja Ferry' }
+  ],
+  'koh-samui|koh-tao': [
+    { icon:'⛴️', label:'Ferry', duration:'1h30–2h', companies:'Lomprayah, Seatran Discovery' }
+  ],
+  'koh-phangan|koh-tao': [
+    { icon:'⛴️', label:'Ferry', duration:'45min–1h', companies:'Lomprayah, Seatran Discovery' }
+  ],
+  'hua-hin|pattaya': [
+    { icon:'🚐', label:'Minivan (souvent via Bangkok)', duration:'3–4h', companies:'Minivans partagés' }
+  ]
+};
+
+function haversineKm(lat1, lng1, lat2, lng2){
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) ** 2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function routeKey(a, b){ return [a,b].sort().join('|'); }
+
+/* ===================== SÉLECTEURS ===================== */
+const fromSelect = document.getElementById('fromCity');
+const toSelect = document.getElementById('toCity');
+const cityKeys = Object.keys(CITIES);
+
+function fillSelect(select, selected){
+  select.innerHTML = cityKeys.map(k => `<option value="${k}"${k===selected?' selected':''}>${CITIES[k].label}</option>`).join('');
+}
+fillSelect(fromSelect, 'bangkok');
+fillSelect(toSelect, 'phuket');
+
+function renderRoute(){
+  const from = fromSelect.value;
+  const to = toSelect.value;
+  const container = document.getElementById('routeResult');
+
+  if(from === to){
+    container.innerHTML = '<p class="tip">Choisis deux villes différentes.</p>';
+    return;
+  }
+
+  const dist = Math.round(haversineKm(CITIES[from].lat, CITIES[from].lng, CITIES[to].lat, CITIES[to].lng));
+  const key = routeKey(from, to);
+  const modes = ROUTES[key];
+
+  let html = `<p class="distance-line">📏 Distance à vol d'oiseau : environ ${dist} km</p>`;
+
+  if(modes){
+    modes.forEach(m => {
+      html += `<div class="mode-card">
+        <p class="mode-title">${m.icon} ${m.label}</p>
+        <p class="mode-duration">⏱️ ${m.duration}</p>
+        <p class="mode-companies">${m.companies}</p>
+      </div>`;
+    });
+  } else {
+    html += `<div class="route-warning">⚠️ Pas de liaison directe pratique entre ${CITIES[from].label} et ${CITIES[to].label} — il faut généralement passer par Bangkok (vol intérieur le plus souvent) ou combiner bus + ferry selon les villes concernées.</div>`;
+  }
+
+  html += `<p style="margin-top:20px">
+    <a class="btn" href="https://12go.asia/en" target="_blank" rel="noopener">🔍 Rechercher les horaires sur 12Go.asia</a>
+  </p>`;
+
+  container.innerHTML = html;
+}
+
+fromSelect.addEventListener('change', renderRoute);
+toSelect.addEventListener('change', renderRoute);
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const tmp = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = tmp;
+  renderRoute();
+});
+
+renderRoute();
+</script>
+</body>
+</html>

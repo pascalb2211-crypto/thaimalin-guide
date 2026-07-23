@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Eleven & distributeurs les plus proches — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Trouve le 7-Eleven ou le distributeur (ATM) le plus proche de toi en Thaïlande, avec itinéraire direct.">
+<link rel="canonical" href="https://thaimalin.fr/seven-eleven">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="7-Eleven & distributeurs les plus proches | Thaï Malin">
+<meta property="og:description" content="Le réflexe numéro 1 en Thaïlande : trouver le 7-Eleven ou le distributeur le plus proche, en un clic.">
+<meta property="og:url" content="https://thaimalin.fr/seven-eleven">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1800');}
+
+.finder-tabs{display:flex;gap:8px;margin-bottom:20px}
+.finder-tabs button{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;padding:10px 18px;border-radius:20px;cursor:pointer;font-size:14px}
+.finder-tabs button.active{background:var(--gold,#d4af37);color:#11151b;font-weight:bold}
+
+.locate-box{margin-bottom:20px}
+.locate-box button{border:none;cursor:pointer}
+.city-fallback{display:none;margin-top:12px}
+.city-fallback select{padding:8px 12px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff}
+
+.result-card{background:#1a1e26;border:1px solid #333;border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.result-card .rname{font-weight:bold}
+.result-card .rdist{color:var(--gold,#d4af37);font-size:14px}
+.result-card a.btn-small{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;text-decoration:none;white-space:nowrap}
+
+.jingle-box{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:18px;margin-top:30px;text-align:center}
+.jingle-box button{border:none;cursor:pointer}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="carnet.html">📔 Mon carnet de voyage</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🏪 7-Eleven & distributeurs</h1>
+<p>Le réflexe numéro 1 en Thaïlande : trouve le plus proche en un clic.</p>
+</div>
+</section>
+
+<section id="finder">
+<div class="finder-tabs">
+  <button data-type="seven" class="active">🏪 7-Eleven</button>
+  <button data-type="atm">🏧 Distributeur (ATM)</button>
+</div>
+
+<div class="locate-box">
+  <button class="btn" id="locateBtn">📍 Chercher près de moi</button>
+  <div class="city-fallback" id="cityFallback">
+    <p class="tip">Géolocalisation indisponible ou refusée — choisis une ville pour chercher autour de son centre :</p>
+    <select id="fallbackCity"></select>
+    <button class="btn" id="fallbackSearchBtn" style="border:none;cursor:pointer">Chercher</button>
+  </div>
+</div>
+
+<div id="finderStatus" class="tip"></div>
+<div id="finderResults"></div>
+
+<div class="jingle-box">
+  <p>🎵 Petit clin d'œil sonore (jingle maison, pas l'original protégé)</p>
+  <button class="btn" id="jingleBtn">🔔 Jouer le jingle</button>
+</div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>7-Eleven & distributeurs — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== ONGLETS 7-ELEVEN / ATM ===================== */
+let activeType = 'seven';
+document.querySelectorAll('.finder-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.finder-tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeType = btn.dataset.type;
+    document.getElementById('finderResults').innerHTML = '';
+    document.getElementById('finderStatus').textContent = '';
+  });
+});
+
+/* ===================== VILLES DE REPLI ===================== */
+const CITIES = {
+  'bangkok':      { label:'🏯 Bangkok',      lat:13.7563, lng:100.5018 },
+  'phuket':       { label:'🏝️ Phuket',       lat:7.9519,  lng:98.3381  },
+  'krabi':        { label:'🧗 Krabi',        lat:8.0500,  lng:98.9000  },
+  'koh-samui':    { label:'🏖️ Koh Samui',    lat:9.5119,  lng:100.0136 },
+  'chiang-mai':   { label:'⛰️ Chiang Mai',   lat:18.7883, lng:98.9853  },
+  'pattaya':      { label:'🌃 Pattaya',      lat:12.9300, lng:100.8850 },
+  'hua-hin':      { label:'🏯 Hua Hin',      lat:12.5684, lng:99.9577  },
+  'koh-tao':      { label:'🐢 Koh Tao',      lat:10.0980, lng:99.8406  },
+  'koh-phangan':  { label:'🏝️ Koh Phangan',  lat:9.7317,  lng:100.0136 },
+  'chiang-rai':   { label:'⛰️ Chiang Rai',   lat:19.9105, lng:99.8406  }
+};
+const fallbackSelect = document.getElementById('fallbackCity');
+fallbackSelect.innerHTML = Object.entries(CITIES).map(([k,c]) => `<option value="${k}">${c.label}</option>`).join('');
+
+function haversineKm(lat1, lng1, lat2, lng2){
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) ** 2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+/* ===================== RECHERCHE OVERPASS (OpenStreetMap) ===================== */
+async function searchNearby(lat, lng){
+  const status = document.getElementById('finderStatus');
+  const results = document.getElementById('finderResults');
+  status.textContent = 'Recherche en cours...';
+  results.innerHTML = '';
+
+  const radius = activeType === 'seven' ? 2000 : 1500;
+  const query = activeType === 'seven'
+    ? `[out:json][timeout:25];(node["shop"="convenience"]["name"~"7-Eleven|7-eleven|Seven Eleven",i](around:${radius},${lat},${lng});node["brand"~"7-Eleven",i](around:${radius},${lat},${lng}););out body;`
+    : `[out:json][timeout:25];node["amenity"="atm"](around:${radius},${lat},${lng});out body;`;
+
+  try{
+    const res = await fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      body: 'data=' + encodeURIComponent(query),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    });
+    if(!res.ok) throw new Error('Overpass indisponible');
+    const data = await res.json();
+
+    // dédoublonnage grossier par coordonnées arrondies (certains points sont dupliqués entre les deux requêtes 7-Eleven)
+    const seen = new Set();
+    const items = data.elements.filter(el => {
+      const key = `${el.lat.toFixed(5)},${el.lon.toFixed(5)}`;
+      if(seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).map(el => ({
+      name: (el.tags && el.tags.name) || (activeType === 'seven' ? '7-Eleven' : 'Distributeur'),
+      lat: el.lat,
+      lng: el.lon,
+      dist: haversineKm(lat, lng, el.lat, el.lon)
+    })).sort((a,b) => a.dist - b.dist).slice(0, 20);
+
+    if(items.length === 0){
+      status.textContent = `Aucun ${activeType === 'seven' ? '7-Eleven' : 'distributeur'} référencé dans OpenStreetMap à proximité (${radius/1000} km) — essaie une zone plus centrale, ou vérifie directement sur Google Maps.`;
+      return;
+    }
+
+    status.textContent = `${items.length} résultat(s) trouvé(s) dans un rayon de ${radius/1000} km :`;
+    results.innerHTML = items.map(it => `
+      <div class="result-card">
+        <div>
+          <div class="rname">${activeType === 'seven' ? '🏪' : '🏧'} ${it.name}</div>
+          <div class="rdist">${it.dist < 1 ? Math.round(it.dist*1000)+' m' : it.dist.toFixed(1)+' km'}</div>
+        </div>
+        <a class="btn-small" href="https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lng}" target="_blank" rel="noopener">🗺️ Itinéraire</a>
+      </div>
+    `).join('');
+  } catch(e){
+    status.textContent = "Impossible de charger les résultats pour le moment — réessaie dans un instant.";
+    console.error(e);
+  }
+}
+
+document.getElementById('locateBtn').addEventListener('click', () => {
+  const status = document.getElementById('finderStatus');
+  const fallback = document.getElementById('cityFallback');
+  if(!navigator.geolocation){
+    fallback.style.display = 'block';
+    status.textContent = "La géolocalisation n'est pas disponible sur cet appareil.";
+    return;
+  }
+  status.textContent = 'Localisation en cours...';
+  navigator.geolocation.getCurrentPosition(
+    pos => searchNearby(pos.coords.latitude, pos.coords.longitude),
+    () => {
+      fallback.style.display = 'block';
+      status.textContent = "Géolocalisation refusée — choisis une ville ci-dessous.";
+    }
+  );
+});
+
+document.getElementById('fallbackSearchBtn').addEventListener('click', () => {
+  const city = CITIES[fallbackSelect.value];
+  searchNearby(city.lat, city.lng);
+});
+
+/* ===================== JINGLE MAISON (Web Audio, pas l'original) ===================== */
+document.getElementById('jingleBtn').addEventListener('click', () => {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const ctx = new AudioCtx();
+  const notes = [523.25, 659.25, 783.99, 1046.50]; // do-mi-sol-do, arpège maison
+  notes.forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const startTime = ctx.currentTime + i * 0.16;
+    gain.gain.setValueAtTime(0.2, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(startTime);
+    osc.stop(startTime + 0.4);
+  });
+});
+</script>
+</body>
+</html>
