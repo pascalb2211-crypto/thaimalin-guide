@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de légendes Instagram — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Génère des légendes Instagram et des packs de hashtags adaptés à ta ville et à l'ambiance de ta photo de voyage en Thaïlande.">
+<link rel="canonical" href="https://thaimalin.fr/legendes">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Générateur de légendes Instagram | Thaï Malin">
+<meta property="og:description" content="Des légendes et hashtags prêts à copier-coller pour tes photos de voyage en Thaïlande.">
+<meta property="og:url" content="https://thaimalin.fr/legendes">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1800');}
+
+.legend-form{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.legend-form select{padding:10px 14px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:15px}
+.legend-form button{border:none;cursor:pointer}
+
+.caption-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.caption-card p{margin:0;flex:1}
+.copy-btn{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;white-space:nowrap}
+.copy-btn.copied{background:var(--gold,#d4af37);color:#11151b}
+
+.hashtag-box{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:16px;margin-top:20px}
+.hashtag-box p{color:#8fb8e0;word-break:break-word}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="carnet.html">📔 Mon carnet de voyage</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>📸 Générateur de légendes Instagram</h1>
+<p>Choisis ta ville et l'ambiance de ta photo, et récupère des légendes + hashtags prêts à copier-coller.</p>
+</div>
+</section>
+
+<section id="legendes">
+<div class="legend-form">
+  <select id="legendCity"></select>
+  <select id="legendMood"></select>
+  <button class="btn" id="legendGenerateBtn">🎲 Générer</button>
+</div>
+
+<div id="captionResults"></div>
+<div id="hashtagResult"></div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Générateur de légendes Instagram — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== DONNÉES ===================== */
+const CITIES = {
+  'peu-importe': { label:'🌏 Peu importe', hashtag:'Thailand' },
+  'bangkok':     { label:'🏯 Bangkok',      hashtag:'Bangkok' },
+  'phuket':      { label:'🏝️ Phuket',       hashtag:'Phuket' },
+  'krabi':       { label:'🧗 Krabi',        hashtag:'Krabi' },
+  'koh-samui':   { label:'🏖️ Koh Samui',    hashtag:'KohSamui' },
+  'chiang-mai':  { label:'⛰️ Chiang Mai',   hashtag:'ChiangMai' },
+  'pattaya':     { label:'🌃 Pattaya',      hashtag:'Pattaya' },
+  'hua-hin':     { label:'🏯 Hua Hin',      hashtag:'HuaHin' },
+  'koh-tao':     { label:'🐢 Koh Tao',      hashtag:'KohTao' },
+  'koh-phangan': { label:'🏝️ Koh Phangan',  hashtag:'KohPhangan' },
+  'chiang-rai':  { label:'⛰️ Chiang Rai',   hashtag:'ChiangRai' }
+};
+
+const MOODS = {
+  'coucher-soleil': {
+    label: '🌅 Coucher de soleil',
+    captions: [
+      "Le soleil se couche, mais la magie de {city} reste gravée.",
+      "Certains couchers de soleil se contentent d'être beaux. Celui-ci a décidé d'être inoubliable.",
+      "{city}, 18h47. Plus rien d'autre n'existait à cet instant.",
+      "Un ciel en feu, un cœur en paix.",
+      "Si le bonheur avait une couleur, ce serait celle de ce ciel."
+    ],
+    hashtags: ['SunsetLovers', 'SunsetThailand', 'GoldenHour', 'ThailandSunset']
+  },
+  'plage': {
+    label: '🏖️ Plage',
+    captions: [
+      "Sable chaud, esprit léger — {city} avait tout prévu.",
+      "Ici, le temps se mesure en vagues, pas en minutes.",
+      "Un peu de sel, beaucoup de soleil, zéro regret.",
+      "La mer d'un côté, mes soucis restés loin de l'autre.",
+      "{city} : le genre d'endroit qui te fait oublier ton fil d'actualité."
+    ],
+    hashtags: ['BeachLife', 'IslandLife', 'ThailandBeaches', 'PlageDeReve']
+  },
+  'temple': {
+    label: '🛕 Temple / culture',
+    captions: [
+      "Un peu d'or, beaucoup de silence — {city} sait comment on se recueille.",
+      "Certains lieux n'ont pas besoin de mots pour parler.",
+      "{city}, entre encens et dorures.",
+      "Ici, même le temps semble ralentir par respect.",
+      "Un instant suspendu au cœur de {city}."
+    ],
+    hashtags: ['TempleRun', 'ThaiCulture', 'AmazingThailand', 'BouddhismeAsie']
+  },
+  'street-food': {
+    label: '🍜 Street food',
+    captions: [
+      "Le meilleur restaurant de {city} n'a pas de nom, juste un wok qui fume.",
+      "5 THB de bonheur, servi sur un coin de trottoir.",
+      "{city} m'a appris qu'on peut tomber amoureux d'un bol de nouilles.",
+      "Le vrai luxe, c'est manger comme un local à {city}.",
+      "Ma boussole ce voyage ? L'odeur qui vient de la rue d'à côté."
+    ],
+    hashtags: ['StreetFoodThailand', 'ThaiFood', 'FoodieTravel', 'ThailandEats']
+  },
+  'aventure': {
+    label: '🧗 Aventure',
+    captions: [
+      "{city} : plus haut que prévu, mieux que prévu.",
+      "Le chemin était raide, la vue valait chaque pas.",
+      "Un peu de sueur, beaucoup de souvenirs.",
+      "{city} m'a mis au défi — j'ai dit oui.",
+      "Ce n'est pas la destination, c'est la montée qui a tout changé."
+    ],
+    hashtags: ['AdventureTravel', 'ThailandAdventure', 'ExploreThailand', 'HikeThailand']
+  },
+  'farniente': {
+    label: '🧘 Farniente',
+    captions: [
+      "Aujourd'hui, {city} et moi n'avions rien de prévu — c'était parfait.",
+      "Le meilleur programme : aucun programme.",
+      "Un hamac, une brise, {city} — la formule magique.",
+      "Ici, ralentir n'est pas une option, c'est une évidence.",
+      "Recharger les batteries, version {city}."
+    ],
+    hashtags: ['SlowTravel', 'IslandTime', 'ThailandChill', 'VacationMode']
+  },
+  'nightlife': {
+    label: '🌃 Vie nocturne',
+    captions: [
+      "{city} s'allume quand le soleil s'éteint.",
+      "La nuit ne fait que commencer à {city}.",
+      "Néons, musique et un peu de folie — {city} version nocturne.",
+      "Ce qui se passe à {city} la nuit... finit sur Instagram le lendemain.",
+      "Un rooftop, une vue, et {city} qui scintille en dessous."
+    ],
+    hashtags: ['NightlifeThailand', 'BangkokNights', 'RooftopVibes', 'ThailandByNight']
+  },
+  'plongee': {
+    label: '🤿 Plongée / snorkeling',
+    captions: [
+      "Un autre monde commence sous la surface de {city}.",
+      "{city} vu d'en bas — encore plus beau qu'en surface.",
+      "Le silence le plus bruyant de couleurs que j'ai jamais vu.",
+      "Ici, même les poissons ont l'air de kiffer {city}.",
+      "Palmes, masque, et un monde entier à explorer."
+    ],
+    hashtags: ['DiveThailand', 'ScubaDiving', 'UnderwaterWorld', 'KohTaoDiving']
+  }
+};
+
+const GENERIC_HASHTAGS = ['Thailand', 'ThailandTravel', 'VoyageEnThailande', 'AmazingThailand', 'Wanderlust', 'TravelGram', 'ThaiMalin'];
+
+/* ===================== SÉLECTEURS ===================== */
+const citySelect = document.getElementById('legendCity');
+const moodSelect = document.getElementById('legendMood');
+
+citySelect.innerHTML = Object.entries(CITIES).map(([key, c]) => `<option value="${key}">${c.label}</option>`).join('');
+moodSelect.innerHTML = Object.entries(MOODS).map(([key, m]) => `<option value="${key}">${m.label}</option>`).join('');
+
+function generate(){
+  const cityKey = citySelect.value;
+  const moodKey = moodSelect.value;
+  const city = CITIES[cityKey];
+  const mood = MOODS[moodKey];
+
+  const cityNameForCaption = cityKey === 'peu-importe' ? 'ce voyage' : city.label.replace(/^\S+\s/, '');
+
+  // on tire 3 légendes au hasard parmi celles de l'ambiance choisie
+  const shuffled = [...mood.captions].sort(() => Math.random() - 0.5).slice(0, 3);
+  const captionsHtml = shuffled.map(c => {
+    const text = c.replace(/\{city\}/g, cityNameForCaption);
+    return `
+      <div class="caption-card">
+        <p>"${text}"</p>
+        <button class="copy-btn" data-text="${text.replace(/"/g,'&quot;')}">📋 Copier</button>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('captionResults').innerHTML = captionsHtml;
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(btn.dataset.text);
+        btn.textContent = '✅ Copié !';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = '📋 Copier'; btn.classList.remove('copied'); }, 2000);
+      } catch(e){ /* clipboard indisponible */ }
+    });
+  });
+
+  // pack de hashtags : génériques + ville + ambiance
+  const tags = [...GENERIC_HASHTAGS];
+  if(cityKey !== 'peu-importe') tags.push(city.hashtag);
+  tags.push(...mood.hashtags);
+  const hashtagText = tags.map(t => `#${t}`).join(' ');
+
+  document.getElementById('hashtagResult').innerHTML = `
+    <div class="hashtag-box">
+      <p><strong>🏷️ Pack de hashtags</strong></p>
+      <p>${hashtagText}</p>
+      <button class="copy-btn" id="copyHashtagsBtn" data-text="${hashtagText.replace(/"/g,'&quot;')}" style="margin-top:10px">📋 Copier les hashtags</button>
+    </div>
+  `;
+  document.getElementById('copyHashtagsBtn').addEventListener('click', async function(){
+    try{
+      await navigator.clipboard.writeText(this.dataset.text);
+      this.textContent = '✅ Copié !';
+      this.classList.add('copied');
+      setTimeout(() => { this.textContent = '📋 Copier les hashtags'; this.classList.remove('copied'); }, 2000);
+    } catch(e){ /* clipboard indisponible */ }
+  });
+}
+
+document.getElementById('legendGenerateBtn').addEventListener('click', generate);
+generate();
+</script>
+</body>
+</html>

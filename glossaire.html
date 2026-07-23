@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossaire de menu thaï — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Déchiffre n'importe quel menu thaïlandais : plats classiques en thaï, phonétique, description et niveau de piment, avec photo.">
+<link rel="canonical" href="https://thaimalin.fr/glossaire">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Glossaire de menu thaï | Thaï Malin">
+<meta property="og:description" content="Les plats thaïlandais classiques expliqués, avec photo et niveau de piment.">
+<meta property="og:url" content="https://thaimalin.fr/glossaire">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1800');}
+
+.glossary-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.glossary-toolbar button{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;font-size:13px;white-space:nowrap}
+.glossary-toolbar button.active{background:var(--gold,#d4af37);color:#11151b;font-weight:bold}
+#dishSearch{width:100%;max-width:360px;padding:10px 14px;border-radius:20px;border:1px solid #444;background:#1a1e26;color:#fff;margin-bottom:16px}
+
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.dish-card{background:#1a1e26;border:1px solid #333;border-radius:14px;overflow:hidden}
+.dish-card img{width:100%;height:150px;object-fit:cover;display:block}
+.dish-card .body{padding:14px}
+.dish-card .fr{font-weight:bold;font-size:16px;margin:0 0 4px;color:#fff}
+.dish-card .th{font-size:17px;margin:0 0 2px;color:var(--gold,#d4af37)}
+.dish-card .phonetic{font-size:13px;color:#aaa;font-style:italic;margin:0 0 8px}
+.dish-card .desc{font-size:13px;color:#ccc;margin:0 0 8px}
+.dish-card .spice{font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="phrases-utiles.html">🗣️ Phrases utiles</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🍜 Glossaire de menu thaï</h1>
+<p>Plus jamais coincé devant un menu sans photo — les plats classiques expliqués, avec leur niveau de piment.</p>
+</div>
+</section>
+
+<section id="glossaire">
+<input id="dishSearch" type="text" placeholder="Rechercher un plat (en français)...">
+<div class="glossary-toolbar" id="categoryToolbar"></div>
+<div class="dish-grid" id="dishGrid"></div>
+<p id="dishEmpty" style="display:none">Aucun plat ne correspond à ta recherche.</p>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Glossaire de menu thaï — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== DONNÉES ===================== */
+const CATEGORIES = [
+  { id:'soupe', label:'🍲 Soupes' },
+  { id:'salade', label:'🥗 Salades' },
+  { id:'curry', label:'🍛 Currys' },
+  { id:'riz-nouilles', label:'🍜 Riz & nouilles' },
+  { id:'grillades', label:'🍢 Grillades & street food' },
+  { id:'dessert', label:'🍮 Desserts' },
+  { id:'boisson', label:'🥤 Boissons' }
+];
+
+const DISHES = [
+  { cat:'soupe', fr:'Soupe épicée aux crevettes', th:'ต้มยำกุ้ง', phonetic:'tom yam kung', desc:"La soupe la plus emblématique de Thaïlande : citronnelle, galanga, kaffir lime, piment.", spice:3, img:'https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=800' },
+  { cat:'soupe', fr:'Soupe de poulet au lait de coco', th:'ต้มข่าไก่', phonetic:'tom kha kai', desc:"Version douce et crémeuse de la tom yum, à base de lait de coco.", spice:1, img:'https://images.unsplash.com/photo-1637806930600-37fa8892069d?q=80&w=800' },
+  { cat:'soupe', fr:'Soupe de nouilles (boat noodles)', th:'ก๋วยเตี๋ยวเรือ', phonetic:'kuay teow reua', desc:"Petite soupe de nouilles au bœuf ou porc, servie traditionnellement depuis des bateaux.", spice:1, img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=800' },
+
+  { cat:'salade', fr:'Salade de papaye verte', th:'ส้มตำ', phonetic:'som tam', desc:"Papaye râpée, tomates, cacahuètes, piment et jus de citron vert — pilée au mortier.", spice:3, img:'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800' },
+  { cat:'salade', fr:'Salade de viande hachée épicée', th:'ลาบ', phonetic:'larb', desc:"Viande hachée (porc, poulet ou bœuf) avec menthe, coriandre, riz grillé pilé et citron vert.", spice:2, img:'https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=800' },
+  { cat:'salade', fr:'Salade de vermicelles épicée', th:'ยำวุ้นเส้น', phonetic:'yam woon sen', desc:"Vermicelles de riz, crevettes ou porc haché, citron vert et piment.", spice:2, img:'https://images.unsplash.com/photo-1521917441209-e886f0404a7b?q=80&w=800' },
+
+  { cat:'curry', fr:'Curry Massaman', th:'แกงมัสมั่น', phonetic:'kaeng matsaman', desc:"Le curry le plus doux, influence musulmane du sud, à base de lait de coco, pomme de terre et cacahuètes.", spice:1, img:'https://images.unsplash.com/photo-1679541946014-a47f1ec0dc1a?q=80&w=800' },
+  { cat:'curry', fr:'Curry vert', th:'แกงเขียวหวาน', phonetic:'kaeng khiao wan', desc:"Pâte de piments verts, lait de coco, aubergines thaïes et basilic.", spice:2, img:'https://images.unsplash.com/photo-1627308595186-e6bb36712645?q=80&w=800' },
+  { cat:'curry', fr:'Curry rouge', th:'แกงเผ็ด', phonetic:'kaeng phed', desc:"Plus relevé que le curry vert, pâte de piments rouges séchés et lait de coco.", spice:3, img:'https://images.unsplash.com/photo-1637806931098-af30b519be53?q=80&w=800' },
+  { cat:'curry', fr:'Curry Panang', th:'พะแนง', phonetic:'panaeng', desc:"Curry épais et crémeux, moins liquide que les autres, souvent au bœuf ou au poulet.", spice:2, img:'https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=800' },
+  { cat:'curry', fr:'Crabe au curry jaune', th:'ปูผัดผงกะหรี่', phonetic:'pu pad pong kari', desc:"Crabe sauté dans un curry aux œufs, spécialité incontournable des restaurants de fruits de mer.", spice:1, img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800' },
+
+  { cat:'riz-nouilles', fr:'Nouilles sautées Pad Thaï', th:'ผัดไทย', phonetic:'pad thai', desc:"Nouilles de riz sautées, œuf, tofu ou crevettes, cacahuètes concassées et citron vert.", spice:1, img:'https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=800' },
+  { cat:'riz-nouilles', fr:'Riz sauté', th:'ข้าวผัด', phonetic:'khao pad', desc:"Riz sauté avec œuf, légumes et viande ou crevettes au choix — simple et toujours bon.", spice:1, img:'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800' },
+  { cat:'riz-nouilles', fr:'Nouilles sautées à la sauce soja', th:'ผัดซีอิ๊ว', phonetic:'pad see ew', desc:"Larges nouilles de riz sautées avec sauce soja sucrée et chou chinois.", spice:0, img:'https://images.unsplash.com/photo-1618449840665-9ed506d73a34?q=80&w=800' },
+  { cat:'riz-nouilles', fr:'Basilic thaï sauté (porc ou poulet haché)', th:'ผัดกะเพรา', phonetic:'pad kra pao', desc:"Le plat du quotidien par excellence en Thaïlande, souvent servi avec un œuf au plat.", spice:2, img:'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800' },
+  { cat:'riz-nouilles', fr:'Poulet-riz à la thaïe hainanaise', th:'ข้าวมันไก่', phonetic:'khao man kai', desc:"Poulet poché servi sur un riz cuit au bouillon de poulet, sauce au gingembre et soja.", spice:0, img:'https://images.unsplash.com/photo-1637806930600-37fa8892069d?q=80&w=800' },
+  { cat:'riz-nouilles', fr:'Nouilles au curry du Nord', th:'ข้าวซอย', phonetic:'khao soi', desc:"Spécialité de Chiang Mai : nouilles dans un curry crémeux, surmontées de nouilles croustillantes.", spice:1, img:'https://images.unsplash.com/photo-1679541946014-a47f1ec0dc1a?q=80&w=800' },
+
+  { cat:'grillades', fr:'Brochettes de porc grillé', th:'หมูปิ้ง', phonetic:'moo ping', desc:"Brochettes marinées grillées au charbon, souvent vendues avec du riz gluant, le petit-déjeuner de rue par excellence.", spice:0, img:'https://images.unsplash.com/photo-1618449840665-9ed506d73a34?q=80&w=800' },
+  { cat:'grillades', fr:'Poulet grillé à l\'Isaan', th:'ไก่ย่าง', phonetic:'kai yang', desc:"Poulet mariné et grillé, spécialité du Nord-Est, souvent accompagné de som tam et riz gluant.", spice:0, img:'https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=800' },
+  { cat:'grillades', fr:'Poisson grillé au sel', th:'ปลาเผา', phonetic:'pla phao', desc:"Poisson entier enrobé de sel et grillé au feu de bois, très courant dans les restaurants de bord de mer.", spice:0, img:'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800' },
+  { cat:'grillades', fr:'Saucisse épicée du Nord', th:'ไส้อั่ว', phonetic:'sai ua', desc:"Saucisse de porc aux herbes et épices, spécialité de Chiang Mai.", spice:2, img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=800' },
+
+  { cat:'dessert', fr:'Riz gluant à la mangue', th:'ข้าวเหนียวมะม่วง', phonetic:'khao niao mamuang', desc:"Le dessert thaï le plus connu à l'international : riz gluant sucré au lait de coco et mangue fraîche.", spice:0, img:'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800' },
+  { cat:'dessert', fr:'Petites crêpes de coco', th:'ขนมครก', phonetic:'khanom krok', desc:"Petites bouchées moelleuses à la noix de coco, cuites dans un moule spécial en fonte.", spice:0, img:'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800' },
+  { cat:'dessert', fr:'Crêpe thaïe roulée', th:'โรตี', phonetic:'roti', desc:"Fine crêpe frite, souvent servie avec banane et lait concentré sucré.", spice:0, img:'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?q=80&w=800' },
+
+  { cat:'boisson', fr:'Thé glacé thaï', th:'ชาเย็น', phonetic:'cha yen', desc:"Thé noir infusé fort, lait concentré et glace — orange vif caractéristique.", spice:0, img:'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800' },
+  { cat:'boisson', fr:'Café glacé thaï', th:'โอเลี้ยง', phonetic:'o liang', desc:"Café noir infusé fort, servi glacé, parfois sucré au lait concentré.", spice:0, img:'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800' },
+  { cat:'boisson', fr:'Citronnade thaïe', th:'น้ำมะนาว', phonetic:'nam manao', desc:"Citron vert pressé, eau et sucre (parfois sel) — rafraîchissant par forte chaleur.", spice:0, img:'https://images.unsplash.com/photo-1521917441209-e886f0404a7b?q=80&w=800' }
+];
+
+/* ===================== TOOLBAR ===================== */
+const toolbar = document.getElementById('categoryToolbar');
+let activeCat = 'all';
+toolbar.innerHTML = '<button data-cat="all" class="active">Tous</button>' + CATEGORIES.map(c => `<button data-cat="${c.id}">${c.label}</button>`).join('');
+toolbar.addEventListener('click', e => {
+  if(e.target.tagName !== 'BUTTON') return;
+  toolbar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeCat = e.target.dataset.cat;
+  renderDishes();
+});
+
+/* ===================== RENDU ===================== */
+function spiceIcons(level){
+  return '🌶️'.repeat(level) || '—';
+}
+
+function renderDishes(){
+  const q = document.getElementById('dishSearch').value.trim().toLowerCase();
+  const grid = document.getElementById('dishGrid');
+  const empty = document.getElementById('dishEmpty');
+
+  const filtered = DISHES.filter(d =>
+    (activeCat === 'all' || d.cat === activeCat) &&
+    (!q || d.fr.toLowerCase().includes(q) || d.phonetic.toLowerCase().includes(q))
+  );
+
+  grid.innerHTML = filtered.map(d => `
+    <div class="dish-card">
+      <img src="${d.img}" alt="${d.fr}" loading="lazy">
+      <div class="body">
+        <p class="fr">${d.fr}</p>
+        <p class="th">${d.th}</p>
+        <p class="phonetic">${d.phonetic}</p>
+        <p class="desc">${d.desc}</p>
+        <p class="spice">${spiceIcons(d.spice)}</p>
+      </div>
+    </div>
+  `).join('');
+
+  empty.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+document.getElementById('dishSearch').addEventListener('input', renderDishes);
+renderDishes();
+</script>
+</body>
+</html>

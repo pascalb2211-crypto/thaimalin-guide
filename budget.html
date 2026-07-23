@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suivi de budget en direct — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Note tes dépenses au fil du voyage et compare-les à l'estimation de budget de ton itinéraire.">
+<link rel="canonical" href="https://thaimalin.fr/budget">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Suivi de budget en direct | Thaï Malin">
+<meta property="og:description" content="Note tes dépenses au fil du voyage et compare-les à ton estimation de budget.">
+<meta property="og:url" content="https://thaimalin.fr/budget">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1800');}
+
+.budget-summary{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:20px;margin-bottom:24px;text-align:center}
+.budget-summary .total{font-size:26px;font-weight:bold;color:var(--gold,#d4af37)}
+.budget-bar{background:#2a2f3a;border-radius:10px;height:16px;overflow:hidden;margin:12px 0}
+.budget-bar-fill{background:var(--gold,#d4af37);height:100%;transition:width .3s}
+.budget-bar-fill.over{background:#c0392b}
+
+.expense-form{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.expense-form select, .expense-form input{padding:10px 12px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:14px}
+.expense-form input[type="number"]{width:120px}
+.expense-form input[type="text"]{flex:1;min-width:150px}
+.expense-form button{border:none;cursor:pointer}
+
+.expense-list{margin-top:20px}
+.expense-row{display:flex;justify-content:space-between;align-items:center;background:#1a1e26;border:1px solid #333;border-radius:10px;padding:12px 16px;margin-bottom:8px}
+.expense-row .cat-icon{font-size:20px;margin-right:10px}
+.expense-row .details{flex:1}
+.expense-row .amount{font-weight:bold;color:var(--gold,#d4af37);margin-right:12px}
+.expense-row button{background:transparent;border:none;color:#e08;cursor:pointer;font-size:16px}
+
+.category-breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:20px 0}
+.category-breakdown .cat-box{background:#1a1e26;border:1px solid #333;border-radius:10px;padding:12px;text-align:center}
+.category-breakdown .cat-box .amt{font-weight:bold;color:var(--gold,#d4af37)}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="transport.html">🚌 Comparatif transports</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>💰 Suivi de budget en direct</h1>
+<p>Note tes dépenses au fil du voyage et compare-les à l'estimation calculée par ton itinéraire.</p>
+</div>
+</section>
+
+<section id="budget">
+<div class="budget-summary" id="budgetSummary"></div>
+
+<h2>Ajouter une dépense</h2>
+<form class="expense-form" id="expenseForm">
+  <select id="expCategory">
+    <option value="🚌 Transport">🚌 Transport</option>
+    <option value="🏨 Hébergement">🏨 Hébergement</option>
+    <option value="🍜 Nourriture">🍜 Nourriture</option>
+    <option value="🎟️ Activités">🎟️ Activités</option>
+    <option value="🛍️ Shopping">🛍️ Shopping</option>
+    <option value="📦 Autre">📦 Autre</option>
+  </select>
+  <input type="number" id="expAmount" placeholder="Montant (THB)" min="0" required>
+  <input type="text" id="expNote" placeholder="Note (optionnel)">
+  <button type="submit" class="btn">Ajouter</button>
+</form>
+
+<div class="category-breakdown" id="categoryBreakdown"></div>
+
+<h2>Dépenses enregistrées</h2>
+<div class="expense-list" id="expenseList"></div>
+
+<p style="margin-top:24px">
+  <button class="btn" id="resetBtn" style="border:none;cursor:pointer;background:transparent;border:1px solid var(--gold,#d4af37);color:#fff">🗑️ Réinitialiser le suivi</button>
+</p>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Suivi de budget — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== SUIVI DE BUDGET ===================== */
+const EXPENSES_KEY = 'thaimalin_budget_log';
+const ESTIMATE_KEY = 'thaimalin_budget_estimate';
+
+function loadExpenses(){
+  try{ return JSON.parse(localStorage.getItem(EXPENSES_KEY)) || []; }
+  catch(e){ return []; }
+}
+function saveExpenses(list){
+  try{ localStorage.setItem(EXPENSES_KEY, JSON.stringify(list)); }
+  catch(e){ /* stockage indisponible */ }
+}
+function loadEstimate(){
+  try{ return JSON.parse(localStorage.getItem(ESTIMATE_KEY)); }
+  catch(e){ return null; }
+}
+
+let expenses = loadExpenses();
+
+function renderAll(){
+  renderSummary();
+  renderBreakdown();
+  renderList();
+}
+
+function renderSummary(){
+  const container = document.getElementById('budgetSummary');
+  const total = expenses.reduce((s,e) => s + e.amount, 0);
+  const estimate = loadEstimate();
+
+  let html = `<p>Total dépensé</p><p class="total">${total.toLocaleString('fr-FR')} THB</p>`;
+
+  if(estimate && estimate.high > 0){
+    const pct = Math.min(100, Math.round((total / estimate.high) * 100));
+    const over = total > estimate.high;
+    html += `<div class="budget-bar"><div class="budget-bar-fill${over ? ' over' : ''}" style="width:${pct}%"></div></div>
+      <p style="font-size:14px;color:#aaa">Estimation de ton itinéraire : ${estimate.low.toLocaleString('fr-FR')}–${estimate.high.toLocaleString('fr-FR')} THB${estimate.openEnded ? ' et +' : ''}</p>`;
+    if(over){
+      html += `<p style="color:#e08;font-size:14px">⚠️ Tu as dépassé l'estimation haute de ton itinéraire.</p>`;
+    }
+  } else {
+    html += `<p style="font-size:13px;color:#888">Génère un itinéraire sur la page "Créer mon itinéraire" pour comparer automatiquement à une estimation.</p>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function renderBreakdown(){
+  const container = document.getElementById('categoryBreakdown');
+  const byCategory = {};
+  expenses.forEach(e => { byCategory[e.category] = (byCategory[e.category] || 0) + e.amount; });
+
+  if(Object.keys(byCategory).length === 0){
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = Object.entries(byCategory).map(([cat, amt]) => `
+    <div class="cat-box">
+      <p>${cat}</p>
+      <p class="amt">${amt.toLocaleString('fr-FR')} THB</p>
+    </div>
+  `).join('');
+}
+
+function renderList(){
+  const container = document.getElementById('expenseList');
+  if(expenses.length === 0){
+    container.innerHTML = '<p class="tip">Aucune dépense enregistrée pour le moment.</p>';
+    return;
+  }
+  container.innerHTML = expenses.slice().reverse().map((e, idxRev) => {
+    const idx = expenses.length - 1 - idxRev;
+    return `
+      <div class="expense-row">
+        <span class="cat-icon">${e.category.split(' ')[0]}</span>
+        <span class="details">${e.category.split(' ').slice(1).join(' ')}${e.note ? ' — ' + e.note : ''}</span>
+        <span class="amount">${e.amount.toLocaleString('fr-FR')} THB</span>
+        <button data-idx="${idx}" class="deleteBtn">✕</button>
+      </div>
+    `;
+  }).join('');
+
+  container.querySelectorAll('.deleteBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      expenses.splice(parseInt(btn.dataset.idx, 10), 1);
+      saveExpenses(expenses);
+      renderAll();
+    });
+  });
+}
+
+document.getElementById('expenseForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const category = document.getElementById('expCategory').value;
+  const amount = parseFloat(document.getElementById('expAmount').value);
+  const note = document.getElementById('expNote').value.trim();
+  if(!amount || amount <= 0) return;
+
+  expenses.push({ category, amount, note, date: new Date().toISOString() });
+  saveExpenses(expenses);
+  renderAll();
+
+  document.getElementById('expAmount').value = '';
+  document.getElementById('expNote').value = '';
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if(confirm('Réinitialiser tout le suivi de budget ? Cette action est irréversible.')){
+    expenses = [];
+    saveExpenses(expenses);
+    renderAll();
+  }
+});
+
+renderAll();
+</script>
+</body>
+</html>

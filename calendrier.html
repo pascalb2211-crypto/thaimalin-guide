@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendrier saisons & événements — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Quand partir en Thaïlande selon la région : saisons sèches/pluvieuses par destination, Songkran, Loy Krathong, Full Moon Party et autres événements à connaître.">
+<link rel="canonical" href="https://thaimalin.fr/calendrier">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Calendrier saisons & événements | Thaï Malin">
+<meta property="og:description" content="Quand partir selon la région, et les événements à ne pas manquer (ou à éviter) en Thaïlande.">
+<meta property="og:url" content="https://thaimalin.fr/calendrier">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=1800');}
+
+.key-insight{background:#20261d;border:1px solid #3a5a2a;border-radius:14px;padding:18px;margin-bottom:24px}
+.key-insight h3{margin:0 0 8px;color:#8fd18a}
+
+.month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.month-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:16px}
+.month-card.current{border-color:var(--gold,#d4af37);border-width:2px}
+.month-card h3{margin:0 0 10px;color:var(--gold,#d4af37)}
+.region-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:6px}
+.region-row .region-name{color:#aaa}
+.status-badge{padding:2px 8px;border-radius:10px;font-size:12px}
+.status-ideal{background:#1e3a24;color:#8fd18a}
+.status-hot{background:#3a2e1e;color:#e0b070}
+.status-rain{background:#1e2a3a;color:#7fb8e0}
+.status-haze{background:#3a1e1e;color:#e08a8a}
+.event-line{margin-top:10px;padding-top:10px;border-top:1px solid #333;font-size:13px;color:#ccc}
+
+.fmp-box{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:16px;margin:24px 0;text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="transport.html">🚌 Comparatif transports</a>
+<a href="budget.html">💰 Suivi budget</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>📅 Calendrier saisons & événements</h1>
+<p>Quand partir selon la région, et les événements à connaître (ou à éviter) mois par mois.</p>
+</div>
+</section>
+
+<section id="calendrier">
+
+<div class="key-insight">
+<h3>💡 Le point clé que peu de voyageurs connaissent</h3>
+<p>La Thaïlande n'a pas une seule saison des pluies — elle en a deux, <strong>inversées</strong>. Pendant que la côte Andaman (Phuket, Krabi) est en pleine mousson de mai à octobre, les îles du golfe (Koh Samui, Koh Phangan, Koh Tao) restent globalement sèches à cette période — leur propre saison des pluies arrive plutôt d'octobre à décembre. Un voyage combinant les deux côtes demande donc de bien caler les dates.</p>
+</div>
+
+<div class="month-grid" id="monthGrid"></div>
+
+<div class="fmp-box">
+<h3>🌕 Full Moon Party (Koh Phangan)</h3>
+<p>A lieu chaque mois, à la pleine lune, à Haad Rin. Les dates exactes varient — vérifie le calendrier officiel avant de réserver ton séjour autour de cet événement.</p>
+</div>
+
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Calendrier saisons & événements — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== DONNÉES SAISONS & ÉVÉNEMENTS ===================== */
+const STATUS = {
+  ideal: { label:'☀️ Idéal', cls:'status-ideal' },
+  hot:   { label:'🥵 Chaud', cls:'status-hot' },
+  rain:  { label:'🌧️ Pluvieux', cls:'status-rain' },
+  haze:  { label:'🌫️ Brume', cls:'status-haze' }
+};
+
+const MONTHS = [
+  { name:'Janvier', regions:{centre:'ideal', nord:'ideal', andaman:'ideal', iles:'ideal'}, events:[] },
+  { name:'Février', regions:{centre:'ideal', nord:'haze', andaman:'ideal', iles:'ideal'}, events:['Nouvel An chinois (Bangkok Chinatown, Phuket Old Town) — date variable selon les années'] },
+  { name:'Mars', regions:{centre:'hot', nord:'haze', andaman:'hot', iles:'ideal'}, events:['Saison des feux agricoles dans le Nord : qualité de l\'air dégradée à Chiang Mai/Chiang Rai jusqu\'en avril'] },
+  { name:'Avril', regions:{centre:'hot', nord:'haze', andaman:'hot', iles:'hot'}, events:['🎉 Songkran (13–15 avril) — nouvel an thaï, bataille d\'eau géante dans tout le pays, particulièrement intense à Chiang Mai'] },
+  { name:'Mai', regions:{centre:'rain', nord:'hot', andaman:'rain', iles:'ideal'}, events:['Début de la mousson côté Andaman (Phuket, Krabi) — les îles du golfe restent sèches'] },
+  { name:'Juin', regions:{centre:'rain', nord:'rain', andaman:'rain', iles:'ideal'}, events:[] },
+  { name:'Juillet', regions:{centre:'rain', nord:'rain', andaman:'rain', iles:'ideal'}, events:['Asalha Puja & début du Carême bouddhiste (Khao Phansa) — date variable'] },
+  { name:'Août', regions:{centre:'rain', nord:'rain', andaman:'rain', iles:'ideal'}, events:[] },
+  { name:'Septembre', regions:{centre:'rain', nord:'rain', andaman:'rain', iles:'ideal'}, events:['Festival Végétarien de Phuket (9 jours, dates variables selon le calendrier lunaire chinois)'] },
+  { name:'Octobre', regions:{centre:'rain', nord:'rain', andaman:'rain', iles:'rain'}, events:['Fin de la mousson côté Andaman, début de la saison pluvieuse aux îles du golfe'] },
+  { name:'Novembre', regions:{centre:'ideal', nord:'ideal', andaman:'ideal', iles:'rain'}, events:['🏮 Loy Krathong & Yi Peng (pleine lune du 12e mois lunaire, mi-novembre) — nationwide, spectacle de lanternes exceptionnel à Chiang Mai'] },
+  { name:'Décembre', regions:{centre:'ideal', nord:'ideal', andaman:'ideal', iles:'rain'}, events:['Pic de la saison des pluies aux îles du golfe (Koh Samui notamment), parfois de fortes précipitations'] }
+];
+
+const REGION_LABELS = { centre:'Centre (Bangkok, Pattaya, Hua Hin)', nord:'Nord (Chiang Mai, Chiang Rai)', andaman:'Andaman (Phuket, Krabi)', iles:'Îles du Golfe (Samui, Phangan, Tao)' };
+
+function renderMonths(){
+  const grid = document.getElementById('monthGrid');
+  const currentMonthIndex = new Date().getMonth(); // 0 = janvier
+
+  grid.innerHTML = MONTHS.map((m, i) => `
+    <div class="month-card${i === currentMonthIndex ? ' current' : ''}">
+      <h3>${m.name}${i === currentMonthIndex ? ' · aujourd\'hui' : ''}</h3>
+      ${Object.entries(m.regions).map(([region, status]) => `
+        <div class="region-row">
+          <span class="region-name">${REGION_LABELS[region]}</span>
+          <span class="status-badge ${STATUS[status].cls}">${STATUS[status].label}</span>
+        </div>
+      `).join('')}
+      ${m.events.length ? `<div class="event-line">${m.events.join('<br>')}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+renderMonths();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon compte — Guide Premium | Thaï Malin</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1800');}
+.account-box{max-width:420px;margin:0 auto;background:#1a1e26;border:1px solid #333;border-radius:16px;padding:30px;text-align:center}
+.status-badge{display:inline-block;padding:8px 18px;border-radius:20px;font-weight:bold;margin:16px 0}
+.status-yes{background:#1e3a24;color:#8fd18a}
+.status-no{background:#3a2e1e;color:#e0b070}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>👤 Mon compte</h1>
+</div>
+</section>
+
+<section id="account">
+<div class="account-box" id="accountBox">
+  <p>Chargement...</p>
+</div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Mon compte — fichier maître</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script>
+async function renderAccount(){
+  const box = document.getElementById('accountBox');
+  const { loggedIn, hasAccess, user } = await checkAccess();
+
+  if(!loggedIn){
+    location.href = 'login.html?redirect=account.html';
+    return;
+  }
+
+  box.innerHTML = `
+    <p>Connecté en tant que</p>
+    <p style="font-weight:bold">${user.email}</p>
+    <div class="status-badge ${hasAccess ? 'status-yes' : 'status-no'}">
+      ${hasAccess ? '✅ Accès Guide Premium actif' : '🔒 Pas encore d\'accès'}
+    </div>
+    ${!hasAccess ? '<p><a class="btn" href="presentation.html">Voir le guide et débloquer l\'accès</a></p>' : ''}
+    <p style="margin-top:20px"><button class="btn" id="logoutBtn" style="border:none;cursor:pointer;background:transparent;border:1px solid var(--gold,#d4af37);color:#fff">Se déconnecter</button></p>
+  `;
+
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await signOut();
+    location.href = 'login.html';
+  });
+}
+
+renderAccount();
+</script>
+</body>
+</html>

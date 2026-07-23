@@ -1,0 +1,137 @@
+{
+  "sites": [
+    {
+      "name": "Tiger Cave Temple (Wat Tham Suea)",
+      "desc": "Temple perché nécessitant l'ascension de 1237 marches, vue à 360° sur la jungle.",
+      "price": "Entrée libre (dons acceptés)",
+      "hours": "06:00–18:00",
+      "tip": "Monter tôt le matin pour éviter la chaleur, prévoir de l'eau.",
+      "lat": 8.1330,
+      "lng": 98.9420
+    },
+    {
+      "name": "4 Islands Tour",
+      "desc": "Excursion en bateau vers Koh Poda, Chicken Island, Tup Island et Phra Nang Cave Beach.",
+      "price": "800–1500 THB selon formule",
+      "hours": "Départs le matin",
+      "tip": "Formule snorkeling + coucher de soleil très appréciée en fin de journée.",
+      "lat": 7.9270,
+      "lng": 98.7420
+    },
+    {
+      "name": "Emerald Pool & Blue Pool",
+      "desc": "Bassins naturels aux eaux turquoise au cœur de la forêt tropicale.",
+      "price": "200 THB",
+      "hours": "08:30–16:30",
+      "tip": "Baignade autorisée uniquement dans l'Emerald Pool, pas dans le Blue Pool.",
+      "lat": 8.1685,
+      "lng": 98.9463
+    },
+    {
+      "name": "Îles Phi Phi (excursion à la journée)",
+      "desc": "Excursion en bateau vers Maya Bay et les criques de Phi Phi Don.",
+      "price": "1200–2500 THB selon formule",
+      "hours": "Départs le matin, retour en fin d'après-midi",
+      "tip": "Prendre un speedboat plutôt qu'un ferry pour gagner du temps sur place.",
+      "lat": 7.7407,
+      "lng": 98.7784
+    },
+    {
+      "name": "Railay Viewpoint",
+      "desc": "Point de vue accessible par une grimpette courte mais raide, panorama sur les criques.",
+      "price": "Entrée libre",
+      "hours": "Accessible toute la journée",
+      "tip": "Chaussures fermées recommandées, la montée peut être glissante.",
+      "lat": 8.0090,
+      "lng": 98.8380
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚕",
+      "title": "Grab & Taxi",
+      "desc": "Disponible à Krabi Town et Ao Nang, moins fréquent ailleurs.",
+      "price": "Selon trajet",
+      "hours": "Journée",
+      "tip": "Négocier le prix avec les taxis de rue avant de monter.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Pratique pour relier Krabi Town, Ao Nang et Klong Muang.",
+      "price": "200–300 THB/jour",
+      "hours": "",
+      "tip": "Casque obligatoire, routes vallonnées par endroits.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "⛴️",
+      "title": "Longtail boat",
+      "desc": "Seul moyen d'accès à Railay Beach depuis Ao Nang.",
+      "price": "100 THB/personne environ",
+      "hours": "06:00–18:00 (tarif nuit majoré)",
+      "tip": "Le prix peut monter après la tombée de la nuit ou par mauvais temps.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚐",
+      "title": "Songthaew",
+      "desc": "Camionnettes partagées entre Krabi Town et Ao Nang.",
+      "price": "60–100 THB",
+      "hours": "06:00–18:00 environ",
+      "tip": "Pratique et économique pour les trajets courts.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses à Krabi Town ou Ao Nang.",
+      "price": "500–1100 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Krabi"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★ proches de la plage.",
+      "price": "1400–2800 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Krabi"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Aonang Villa Resort, Railay Bay Resort…",
+      "price": "3200–5500 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Krabi"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Phulay Bay, a Ritz-Carlton Reserve…",
+      "price": "7500 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Krabi"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "900–1500 THB/jour",
+      "desc": "Guesthouse, street food et songthaew."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2200–4000 THB/jour",
+      "desc": "Hôtel confortable, restaurants et une excursion en bateau incluse."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "6500 THB et +",
+      "desc": "Resort haut de gamme, longtail privé et excursions sur mesure."
+    }
+  ]
+}

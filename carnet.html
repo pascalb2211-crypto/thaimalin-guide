@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon carnet de voyage — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Ton carnet de voyage personnalisé : itinéraire, budget, restaurants favoris, notes et tes propres photos, réunis en un seul endroit.">
+<link rel="canonical" href="https://thaimalin.fr/carnet">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Mon carnet de voyage | Thaï Malin">
+<meta property="og:description" content="Itinéraire, budget, favoris et photos personnelles réunis en un seul carnet.">
+<meta property="og:url" content="https://thaimalin.fr/carnet">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1800');}
+
+.carnet-section{margin-bottom:36px}
+.carnet-section h2{border-bottom:1px solid #333;padding-bottom:8px}
+.day-mini{background:#1a1e26;border:1px solid #333;border-radius:12px;padding:14px;margin-bottom:10px}
+.day-mini h4{margin:0 0 4px;color:var(--gold,#d4af37)}
+.empty-notice{color:#888;font-size:14px;background:#1a1e26;border:1px solid #333;border-radius:12px;padding:16px}
+.empty-notice a{color:var(--gold,#d4af37)}
+
+.note-city-block{margin-bottom:16px}
+.note-city-block h3{color:var(--gold,#d4af37);margin-bottom:8px}
+.note-item{background:#1a1e26;border:1px solid #333;border-radius:10px;padding:12px;margin-bottom:8px}
+.note-item .rname{font-weight:bold}
+.note-item .rnote{color:#ccc;font-size:14px;margin-top:4px}
+
+.photo-upload{margin-bottom:16px}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.photo-card{background:#1a1e26;border:1px solid #333;border-radius:12px;overflow:hidden}
+.photo-card img{width:100%;height:140px;object-fit:cover;display:block}
+.photo-card .caption-area{padding:8px}
+.photo-card input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid #444;background:#11151b;color:#fff;font-size:12px;margin-bottom:6px}
+.photo-card .delete-photo{background:transparent;border:none;color:#e08;cursor:pointer;font-size:12px}
+
+@media print{
+  header, .carnet-actions, footer, #photos-section { display:none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="budget.html">💰 Suivi budget</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>📔 Mon carnet de voyage</h1>
+<p>Ton itinéraire, ton budget, tes restaurants favoris et tes propres photos, réunis en un seul endroit — 100% privé, gardé uniquement sur cet appareil.</p>
+</div>
+</section>
+
+<section id="carnet">
+
+<div class="carnet-section" id="itin-recap">
+<h2>🗺️ Mon itinéraire</h2>
+<div id="itinRecapContent"></div>
+</div>
+
+<div class="carnet-section" id="budget-recap">
+<h2>💰 Mon budget</h2>
+<div id="budgetRecapContent"></div>
+</div>
+
+<div class="carnet-section" id="notes-recap">
+<h2>⭐ Mes favoris & notes</h2>
+<div id="notesRecapContent"></div>
+</div>
+
+<div class="carnet-section" id="photos-section">
+<h2>📸 Mes photos</h2>
+<p>Ajoute tes propres photos de voyage — elles restent privées, stockées uniquement sur cet appareil (rien n'est envoyé sur internet).</p>
+<div class="photo-upload">
+  <input type="file" id="photoInput" accept="image/*" multiple>
+</div>
+<div class="photo-grid" id="photoGrid"></div>
+</div>
+
+<div class="carnet-actions" style="margin-top:24px">
+  <button class="btn" onclick="window.print()" style="border:none;cursor:pointer">🖨️ Imprimer / PDF</button>
+</div>
+
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Mon carnet de voyage — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== ITINÉRAIRE ===================== */
+function renderItinRecap(){
+  const container = document.getElementById('itinRecapContent');
+  let saved;
+  try{ saved = JSON.parse(localStorage.getItem('thaimalin_saved_itinerary')); } catch(e){ saved = null; }
+
+  if(!saved || !saved.days || saved.days.length === 0){
+    container.innerHTML = `<div class="empty-notice">Aucun itinéraire généré pour le moment — <a href="itineraire.html">crée le tien ici</a>, il apparaîtra automatiquement dans ce carnet.</div>`;
+    return;
+  }
+
+  container.innerHTML = `
+    <p><strong>${saved.cities.join(' → ')}</strong> · ${saved.totalDays} jours</p>
+    ${saved.days.map(d => `
+      <div class="day-mini">
+        <h4>Jour ${d.dayNumber} — ${d.city}${d.districts.length ? ' · ' + d.districts.join(', ') : ''}</h4>
+        ${d.restaurants.length ? `<p>🍽️ ${d.restaurants.join(', ')}</p>` : ''}
+        ${d.site ? `<p>📍 ${d.site}</p>` : ''}
+      </div>
+    `).join('')}
+  `;
+}
+
+/* ===================== BUDGET ===================== */
+function renderBudgetRecap(){
+  const container = document.getElementById('budgetRecapContent');
+  let expenses = [];
+  let estimate = null;
+  try{ expenses = JSON.parse(localStorage.getItem('thaimalin_budget_log')) || []; } catch(e){ expenses = []; }
+  try{ estimate = JSON.parse(localStorage.getItem('thaimalin_budget_estimate')); } catch(e){ estimate = null; }
+
+  if(expenses.length === 0 && !estimate){
+    container.innerHTML = `<div class="empty-notice">Pas encore de suivi de budget — <a href="budget.html">commence ici</a>.</div>`;
+    return;
+  }
+
+  const total = expenses.reduce((s,e) => s + e.amount, 0);
+  let html = '';
+  if(estimate){
+    html += `<p>Estimation de l'itinéraire : <strong>${estimate.low.toLocaleString('fr-FR')}–${estimate.high.toLocaleString('fr-FR')} THB${estimate.openEnded ? ' et +' : ''}</strong></p>`;
+  }
+  html += `<p>Total dépensé enregistré : <strong>${total.toLocaleString('fr-FR')} THB</strong> (${expenses.length} dépense${expenses.length > 1 ? 's' : ''})</p>`;
+  html += `<p><a href="budget.html">Voir le détail complet →</a></p>`;
+  container.innerHTML = html;
+}
+
+/* ===================== FAVORIS & NOTES (toutes villes) ===================== */
+function renderNotesRecap(){
+  const container = document.getElementById('notesRecapContent');
+  const cities = ['bangkok','phuket','krabi','koh-samui','chiang-mai','pattaya','hua-hin','koh-tao','koh-phangan','chiang-rai'];
+  const cityLabels = {
+    'bangkok':'🏯 Bangkok','phuket':'🏝️ Phuket','krabi':'🧗 Krabi','koh-samui':'🏖️ Koh Samui',
+    'chiang-mai':'⛰️ Chiang Mai','pattaya':'🌃 Pattaya','hua-hin':'🏯 Hua Hin','koh-tao':'🐢 Koh Tao',
+    'koh-phangan':'🏝️ Koh Phangan','chiang-rai':'⛰️ Chiang Rai'
+  };
+
+  let html = '';
+  let anyFound = false;
+
+  cities.forEach(city => {
+    let favs = [];
+    let notes = {};
+    try{ favs = JSON.parse(localStorage.getItem(`thaimalin_favorites_${city}`)) || []; } catch(e){ favs = []; }
+    try{ notes = JSON.parse(localStorage.getItem(`thaimalin_notes_${city}`)) || {}; } catch(e){ notes = {}; }
+
+    if(favs.length === 0) return;
+    anyFound = true;
+    html += `<div class="note-city-block"><h3>${cityLabels[city]}</h3>`;
+    favs.forEach(name => {
+      html += `<div class="note-item"><span class="rname">⭐ ${name}</span>${notes[name] ? `<div class="rnote">📝 ${notes[name]}</div>` : ''}</div>`;
+    });
+    html += `</div>`;
+  });
+
+  container.innerHTML = anyFound ? html : `<div class="empty-notice">Aucun restaurant en favori pour le moment — ajoute-en depuis les pages des villes.</div>`;
+}
+
+/* ===================== PHOTOS PERSONNELLES (IndexedDB) ===================== */
+const DB_NAME = 'thaimalin_carnet';
+const STORE_NAME = 'photos';
+let dbInstance = null;
+
+function openDb(){
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if(!db.objectStoreNames.contains(STORE_NAME)){
+        db.createObjectStore(STORE_NAME, { keyPath:'id', autoIncrement:true });
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function getDb(){
+  if(!dbInstance) dbInstance = await openDb();
+  return dbInstance;
+}
+
+async function addPhoto(dataUrl, caption){
+  const db = await getDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).add({ dataUrl, caption: caption || '', date: new Date().toISOString() });
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+async function getAllPhotos(){
+  const db = await getDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const req = tx.objectStore(STORE_NAME).getAll();
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function updateCaption(id, caption){
+  const db = await getDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.get(id);
+    req.onsuccess = () => {
+      const record = req.result;
+      if(record){ record.caption = caption; store.put(record); }
+      resolve();
+    };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function deletePhoto(id){
+  const db = await getDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+function resizeImage(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const maxW = 1280;
+        const scale = Math.min(1, maxW / img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.75));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function renderPhotos(){
+  const grid = document.getElementById('photoGrid');
+  let photos = [];
+  try{ photos = await getAllPhotos(); } catch(e){ console.warn('Photos indisponibles :', e); }
+
+  if(photos.length === 0){
+    grid.innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = photos.slice().reverse().map(p => `
+    <div class="photo-card">
+      <img src="${p.dataUrl}" alt="Photo de voyage">
+      <div class="caption-area">
+        <input type="text" placeholder="Légende..." value="${(p.caption || '').replace(/"/g,'&quot;')}" data-id="${p.id}" class="captionInput">
+        <button class="delete-photo" data-id="${p.id}">🗑️ Supprimer</button>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.captionInput').forEach(input => {
+    input.addEventListener('change', async () => {
+      await updateCaption(parseInt(input.dataset.id, 10), input.value);
+    });
+  });
+  grid.querySelectorAll('.delete-photo').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      await deletePhoto(parseInt(btn.dataset.id, 10));
+      renderPhotos();
+    });
+  });
+}
+
+document.getElementById('photoInput').addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files);
+  for(const file of files){
+    try{
+      const dataUrl = await resizeImage(file);
+      await addPhoto(dataUrl, '');
+    } catch(err){
+      console.warn('Erreur lors de l\'ajout de la photo :', err);
+    }
+  }
+  e.target.value = '';
+  renderPhotos();
+});
+
+/* ===================== INITIALISATION ===================== */
+renderItinRecap();
+renderBudgetRecap();
+renderNotesRecap();
+renderPhotos();
+</script>
+</body>
+</html>

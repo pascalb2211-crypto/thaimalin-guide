@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer mon itinéraire — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Génère ton itinéraire de voyage en Thaïlande sur mesure : parcours guidés, sélection personnalisée de villes, ou demande d'itinéraire fait main.">
+<link rel="canonical" href="https://thaimalin.fr/itineraire">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Créer mon itinéraire — Guide Premium | Thaï Malin">
+<meta property="og:description" content="Parcours guidés, personnalisés ou sur mesure pour préparer ton voyage en Thaïlande.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=1200">
+<meta property="og:url" content="https://thaimalin.fr/itineraire">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1800');}
+
+.itin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.itin-tabs button{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;padding:10px 18px;border-radius:20px;cursor:pointer;font-size:14px}
+.itin-tabs button.active{background:var(--gold,#d4af37);color:#11151b;font-weight:bold}
+.itin-panel{display:none}
+.itin-panel.active{display:block}
+
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:20px}
+.theme-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:16px;cursor:pointer;transition:border-color .2s}
+.theme-card:hover{border-color:var(--gold,#d4af37)}
+.theme-card.selected{border-color:var(--gold,#d4af37);border-width:2px}
+.theme-card h3{margin:0 0 6px}
+.theme-card p{margin:0;font-size:13px;color:#aaa}
+
+.city-checklist{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.city-check{background:#1a1e26;border:1px solid #333;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px}
+.city-check input{accent-color:var(--gold,#d4af37)}
+
+.days-input{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.days-input input{width:80px;padding:8px 12px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:16px}
+
+.day-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:18px;margin-bottom:14px}
+.day-card h3{margin:0 0 8px;color:var(--gold,#d4af37)}
+.day-card .city-tag{display:inline-block;background:#2a2f3a;padding:2px 10px;border-radius:12px;font-size:12px;margin-bottom:8px}
+.day-card .sparse-notice{color:#e08;font-size:13px;margin-top:8px}
+.excursion-box{background:#20261d;border:1px solid #3a5a2a;border-radius:14px;padding:16px;margin:20px 0}
+.excursion-box h4{margin:0 0 6px;color:#8fd18a}
+.budget-box{background:#1a1e26;border:1px solid var(--gold,#d4af37);border-radius:14px;padding:16px;margin:20px 0;text-align:center}
+.budget-box .amount{font-size:22px;font-weight:bold;color:var(--gold,#d4af37)}
+.warning-box{background:#2a1e1e;border:1px solid #6a3a3a;border-radius:14px;padding:14px;margin-bottom:16px;color:#e0a0a0;font-size:14px}
+
+.itin-actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.itin-actions button{border:none;cursor:pointer}
+
+#surmesureForm label{display:block;margin:14px 0 6px;font-size:14px;color:#ccc}
+#surmesureForm input, #surmesureForm select, #surmesureForm textarea{
+  width:100%;max-width:480px;padding:10px 12px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:14px;
+}
+#surmesureForm textarea{min-height:100px;resize:vertical}
+#surmesureForm .checks{display:flex;flex-wrap:wrap;gap:10px;max-width:480px}
+#surmesureForm .checks label{display:flex;align-items:center;gap:6px;background:#1a1e26;border:1px solid #333;border-radius:10px;padding:8px 12px;margin:0;font-size:13px}
+#surmesureForm .checks input{width:auto}
+
+@media print{
+  header, .itin-tabs, .itin-actions, footer, #surmesure { display:none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="phrases-utiles.html">🗣️ Phrases utiles</a>
+<a href="transport.html">🚌 Comparatif transports</a>
+<a href="budget.html">💰 Suivi budget</a>
+<a href="#itin">🗺️ Itinéraire</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🗺️ Crée ton itinéraire</h1>
+<p>Un parcours guidé, une sélection sur mesure de villes, ou une demande faite main — à toi de choisir.</p>
+<a class="btn" href="#itin">Commencer</a>
+</div>
+</section>
+
+<section id="itin">
+<div class="itin-tabs">
+  <button data-tab="guide" class="active">🧭 Guidé</button>
+  <button data-tab="perso">🎛️ Personnalisé</button>
+  <button data-tab="surprise">🎲 Surprends-moi</button>
+  <button data-tab="surmesure">🎯 Sur mesure</button>
+</div>
+
+<!-- ===================== ONGLET GUIDÉ ===================== -->
+<div class="itin-panel active" id="panel-guide">
+  <p>Choisis un thème régional, indique le nombre de jours, et le parcours se construit tout seul à partir de nos données.</p>
+  <div class="theme-grid" id="themeGrid"></div>
+  <div class="days-input">
+    <label for="guideDays">Nombre de jours :</label>
+    <input type="number" id="guideDays" min="3" max="30" value="10">
+    <button class="btn" id="guideGenerateBtn" style="border:none;cursor:pointer">Générer mon itinéraire</button>
+  </div>
+  <div id="guideResult"></div>
+</div>
+
+<!-- ===================== ONGLET PERSONNALISÉ ===================== -->
+<div class="itin-panel" id="panel-perso">
+  <p>Coche les villes qui t'intéressent et indique le nombre de jours total — l'ordre sera réorganisé pour limiter les trajets.</p>
+  <div class="city-checklist" id="cityChecklist"></div>
+  <div class="days-input">
+    <label for="persoDays">Nombre de jours :</label>
+    <input type="number" id="persoDays" min="3" max="30" value="10">
+    <button class="btn" id="persoGenerateBtn" style="border:none;cursor:pointer">Générer mon itinéraire</button>
+  </div>
+  <div id="persoResult"></div>
+</div>
+
+<!-- ===================== ONGLET SURPRENDS-MOI ===================== -->
+<div class="itin-panel" id="panel-surprise">
+  <p>Pas d'idée précise ? Indique juste combien de jours tu as, et on te propose une destination surprise parmi nos parcours régionaux.</p>
+  <div class="days-input">
+    <label for="surpriseDays">Nombre de jours :</label>
+    <input type="number" id="surpriseDays" min="3" max="30" value="10">
+    <button class="btn" id="surpriseBtn" style="border:none;cursor:pointer">🎲 Surprends-moi !</button>
+  </div>
+  <div id="surpriseReveal"></div>
+  <div id="surpriseResult"></div>
+</div>
+
+<!-- ===================== ONGLET SUR MESURE ===================== -->
+<div class="itin-panel" id="panel-surmesure">
+  <p>Décris-nous ton projet de voyage — on te construit un itinéraire fait main, adapté à tes vraies envies.</p>
+  <form id="surmesureForm" action="https://formspree.io/f/xeeylnzw" method="POST">
+    <label for="sm-dates">Dates de voyage (ou mois approximatif)</label>
+    <input type="text" id="sm-dates" name="Dates de voyage" placeholder="ex : mi-décembre 2026, ou 'vers février'">
+
+    <label for="sm-duree">Durée du séjour</label>
+    <input type="text" id="sm-duree" name="Durée du séjour" placeholder="ex : 12 jours" required>
+
+    <label for="sm-personnes">Nombre de personnes</label>
+    <input type="number" id="sm-personnes" name="Nombre de personnes" min="1" value="2" required>
+
+    <label for="sm-budget">Budget approximatif par personne</label>
+    <input type="text" id="sm-budget" name="Budget par personne" placeholder="ex : 1500 €, ou 'petit budget'">
+
+    <label for="sm-style">Style de voyage</label>
+    <select id="sm-style" name="Style de voyage">
+      <option>Farniente / plages</option>
+      <option>Aventure / nature</option>
+      <option>Culture / temples</option>
+      <option>Vie nocturne</option>
+      <option>Un mix de tout</option>
+    </select>
+
+    <label>Villes qui donnent déjà envie (optionnel)</label>
+    <div class="checks" id="smCityChecks"></div>
+
+    <label for="sm-envies">Envies particulières, contraintes, questions</label>
+    <textarea id="sm-envies" name="Envies particulières"></textarea>
+
+    <label for="sm-email">Ton email (pour qu'on te réponde)</label>
+    <input type="email" id="sm-email" name="Email" required>
+
+    <p style="margin-top:20px">
+      <button type="submit" class="btn" style="border:none;cursor:pointer">Envoyer ma demande</button>
+    </p>
+    <p id="smStatus" class="tip"></p>
+  </form>
+</div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Créer mon itinéraire — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU DESTINATIONS + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== ONGLETS ===================== */
+document.querySelectorAll('.itin-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.itin-tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.itin-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ===================== DONNÉES DES VILLES ===================== */
+const CITIES = {
+  'bangkok':      { label:'Bangkok',      emoji:'🏯', minDays:3, major:true,  region:'centre'  },
+  'phuket':       { label:'Phuket',       emoji:'🏝️', minDays:2, major:true,  region:'andaman' },
+  'krabi':        { label:'Krabi',        emoji:'🧗', minDays:2, major:false, region:'andaman' },
+  'koh-samui':    { label:'Koh Samui',    emoji:'🏖️', minDays:2, major:true,  region:'iles'    },
+  'chiang-mai':   { label:'Chiang Mai',   emoji:'⛰️', minDays:2, major:true,  region:'nord'    },
+  'pattaya':      { label:'Pattaya',      emoji:'🌃', minDays:2, major:false, region:'centre'  },
+  'hua-hin':      { label:'Hua Hin',      emoji:'🏯', minDays:2, major:false, region:'centre'  },
+  'koh-tao':      { label:'Koh Tao',      emoji:'🐢', minDays:2, major:false, region:'iles'    },
+  'koh-phangan':  { label:'Koh Phangan',  emoji:'🏝️', minDays:2, major:false, region:'iles'    },
+  'chiang-rai':   { label:'Chiang Rai',   emoji:'⛰️', minDays:2, major:false, region:'nord'    }
+};
+const REGION_ORDER = ['centre','nord','andaman','iles'];
+
+const THEMES = [
+  { id:'best', label:'🏙️ Best of Thaïlande', desc:'Bangkok, Phuket, Krabi (+ Koh Samui si assez de jours)', cities:['bangkok','phuket','krabi','koh-samui'],
+    excursion:{ name:'Koh Lanta', text:"Depuis Krabi, une extension vers Koh Lanta permet de retrouver des plages plus authentiques et beaucoup moins de foule qu'à Ao Nang." } },
+  { id:'nord', label:'⛰️ Nord authentique', desc:'Chiang Mai, Chiang Rai', cities:['chiang-mai','chiang-rai'],
+    excursion:{ name:'Pai', text:"Beaucoup de voyageurs ajoutent un détour par Pai, petit village de montagne à environ 3h de route de Chiang Mai (762 virages, accroche-toi) : cafés en bord de rivière, canyon, sources chaudes et ambiance résolument décontractée. Compte 1 à 2 jours si tu as de la marge." } },
+  { id:'iles', label:'🏝️ Îles du Golfe', desc:'Koh Samui, Koh Phangan, Koh Tao', cities:['koh-samui','koh-phangan','koh-tao'],
+    excursion:{ name:'Ang Thong National Marine Park', text:"Depuis Koh Samui, le parc marin national d'Ang Thong se visite en excursion à la journée : îles karstiques, lagon caché de Koh Mae Ko, kayak et snorkeling — l'un des plus beaux spots du golfe de Thaïlande." } },
+  { id:'andaman', label:'🌊 Sud Andaman', desc:'Phuket, Krabi', cities:['phuket','krabi'],
+    excursion:{ name:'Similan Islands', text:"Une sortie plongée ou snorkeling aux îles Similan (accessibles de mai à octobre uniquement) complète parfaitement un séjour dans le sud Andaman, pour une eau parmi les plus claires de Thaïlande." } },
+  { id:'est', label:'🌃 Bangkok & côte Est', desc:'Bangkok, Pattaya, Hua Hin', cities:['bangkok','pattaya','hua-hin'],
+    excursion:{ name:'Ayutthaya', text:"À moins d'1h30 de train de Bangkok, l'ancienne capitale royale d'Ayutthaya se visite en excursion à la journée : temples en ruines envahis par la végétation, dont la célèbre tête de Bouddha enlacée par des racines à Wat Mahathat." } }
+];
+
+const dataCache = {}; // citySlug -> {districts, restaurants, extras}
+const usedSitesGlobal = new Set();
+const usedRestaurantsGlobal = new Set();
+
+async function loadCityData(city){
+  if(dataCache[city]) return dataCache[city];
+  try{
+    const [dRes, rRes, eRes] = await Promise.all([
+      fetch(`${city}-districts.json`),
+      fetch(`${city}-restaurants.json`),
+      fetch(`extras-${city}.json`)
+    ]);
+    const districts = dRes.ok ? await dRes.json() : [];
+    const restaurants = rRes.ok ? await rRes.json() : [];
+    const extras = eRes.ok ? await eRes.json() : { sites:[] };
+    dataCache[city] = { districts, restaurants, extras };
+  } catch(e){
+    console.warn('Erreur de chargement des données pour', city, e);
+    dataCache[city] = { districts:[], restaurants:[], extras:{ sites:[] } };
+  }
+  return dataCache[city];
+}
+
+function haversineKm(lat1, lng1, lat2, lng2){
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) ** 2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+/* ===================== ALLOCATION DES JOURS ===================== */
+function minRequired(list){
+  let sum = list.reduce((s,c) => s + CITIES[c].minDays, 0);
+  if(list.length > 3) sum += 1;
+  return sum;
+}
+
+function allocateDays(cityListIn, totalDays){
+  let cities = [...cityListIn];
+  const dropped = [];
+  while(cities.length > 1 && minRequired(cities) > totalDays){
+    dropped.push(cities.pop());
+  }
+  const transportBuffer = cities.length > 3 ? 1 : 0;
+  const allocable = Math.max(totalDays - transportBuffer, cities.reduce((s,c)=>s+CITIES[c].minDays,0));
+  const days = {};
+  cities.forEach(c => { days[c] = CITIES[c].minDays; });
+  let leftover = allocable - cities.reduce((s,c)=>s+days[c],0);
+  const majors = cities.filter(c => CITIES[c].major);
+  const extendOrder = majors.length ? majors : cities;
+  let i = 0;
+  while(leftover > 0){
+    days[extendOrder[i % extendOrder.length]]++;
+    leftover--;
+    i++;
+  }
+  return { cities, days, transportBuffer, dropped };
+}
+
+/* ===================== REGROUPEMENT GÉOGRAPHIQUE PAR JOUR ===================== */
+function chainOrder(items){
+  if(items.length <= 1) return items.slice();
+  const remaining = [...items];
+  const ordered = [remaining.shift()];
+  while(remaining.length){
+    const last = ordered[ordered.length-1];
+    let bestIdx = 0, bestDist = Infinity;
+    remaining.forEach((it, idx) => {
+      const d = haversineKm(last.lat, last.lng, it.lat, it.lng);
+      if(d < bestDist){ bestDist = d; bestIdx = idx; }
+    });
+    ordered.push(remaining.splice(bestIdx,1)[0]);
+  }
+  return ordered;
+}
+
+function splitIntoDays(orderedItems, nDays){
+  const groups = Array.from({length:nDays}, () => []);
+  const perDay = orderedItems.length / nDays;
+  let idx = 0;
+  for(let d = 0; d < nDays; d++){
+    const count = Math.round((d+1)*perDay) - Math.round(d*perDay);
+    for(let k = 0; k < count && idx < orderedItems.length; k++){ groups[d].push(orderedItems[idx++]); }
+  }
+  while(idx < orderedItems.length){ groups[nDays-1].push(orderedItems[idx++]); }
+  return groups;
+}
+
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function buildCityDays(cityData, nDays){
+  const districts = (cityData.districts||[]).filter(d => d.lat && d.lng);
+  const restaurants = (cityData.restaurants||[]).filter(r => r.lat && r.lng);
+  const sites = ((cityData.extras||{}).sites||[]).filter(s => s.lat && s.lng);
+
+  const chain = districts.length ? chainOrder(districts) : [];
+  let groups;
+  if(chain.length === 0){
+    groups = Array.from({length:nDays}, () => []);
+  } else if(chain.length >= nDays){
+    groups = splitIntoDays(chain, nDays);
+  } else {
+    groups = Array.from({length:nDays}, (_, i) => [chain[i % chain.length]]);
+  }
+
+  return groups.map(group => {
+    const districtNames = group.map(d => d.name);
+    const centroid = group.length
+      ? { lat: group.reduce((s,d)=>s+d.lat,0)/group.length, lng: group.reduce((s,d)=>s+d.lng,0)/group.length }
+      : (chain[0] ? { lat: chain[0].lat, lng: chain[0].lng } : null);
+
+    let restoPicks = group.map(d => d.restaurant).filter(Boolean);
+    if(restoPicks.length === 0 && centroid && restaurants.length){
+      const candidates = restaurants
+        .filter(r => !usedRestaurantsGlobal.has(r.name))
+        .map(r => ({...r, dist: haversineKm(centroid.lat, centroid.lng, r.lat, r.lng)}))
+        .sort((a,b) => a.dist - b.dist)
+        .slice(0, 3);
+      if(candidates.length){
+        const pick = pickRandom(candidates);
+        restoPicks.push(pick.name);
+        usedRestaurantsGlobal.add(pick.name);
+      }
+    }
+
+    let sitePick = null;
+    if(centroid && sites.length){
+      const candidates = sites
+        .filter(s => !usedSitesGlobal.has(s.name))
+        .map(s => ({...s, dist: haversineKm(centroid.lat, centroid.lng, s.lat, s.lng)}))
+        .filter(s => s.dist < 15)
+        .sort((a,b) => a.dist - b.dist)
+        .slice(0, 3);
+      if(candidates.length){
+        sitePick = pickRandom(candidates);
+        usedSitesGlobal.add(sitePick.name);
+      }
+    }
+
+    return { districts: districtNames, restaurants: restoPicks, site: sitePick, sparse: group.length === 0, centroid };
+  });
+}
+
+/* ===================== BUDGET ESTIMÉ ===================== */
+function parseBudgetRange(str){
+  const nums = (str.match(/[\d\s]{2,}/g) || []).map(s => parseInt(s.replace(/\s/g,''),10)).filter(n => !isNaN(n));
+  const openEnded = /et \+/.test(str);
+  if(nums.length === 0) return { low:0, high:0, openEnded };
+  if(nums.length === 1) return { low:nums[0], high:nums[0], openEnded };
+  return { low:nums[0], high:nums[1], openEnded };
+}
+
+function estimateBudget(citiesWithDays, tierKeyword){
+  let low = 0, high = 0, openEnded = false, found = false;
+  citiesWithDays.forEach(({city, nDays}) => {
+    const extras = (dataCache[city] || {}).extras || {};
+    const tiers = extras.budget || [];
+    const match = tiers.find(t => (t.tier||'').toLowerCase().includes(tierKeyword));
+    if(match){
+      const r = parseBudgetRange(match.price || '');
+      low += r.low * nDays;
+      high += r.high * nDays;
+      if(r.openEnded) openEnded = true;
+      found = true;
+    }
+  });
+  return { low, high, openEnded, found };
+}
+
+/* ===================== RENDU D'UN ITINÉRAIRE ===================== */
+function generateGpx(summaryDays, tripLabel){
+  const waypoints = [];
+  summaryDays.forEach(d => {
+    if(d.lat && d.lng){
+      const name = `Jour ${d.dayNumber} - ${d.city}${d.districts.length ? ' - ' + d.districts.join('+') : ''}`;
+      waypoints.push({ name, desc: d.restaurants.join(', '), lat: d.lat, lng: d.lng });
+    }
+    if(d.siteLat && d.siteLng && (d.siteLat !== d.lat || d.siteLng !== d.lng)){
+      waypoints.push({ name: `Jour ${d.dayNumber} - ${d.site}`, desc: '', lat: d.siteLat, lng: d.siteLng });
+    }
+  });
+
+  const escapeXml = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  const gpxBody = waypoints.map(w => `
+  <wpt lat="${w.lat}" lon="${w.lng}">
+    <name>${escapeXml(w.name)}</name>
+    <desc>${escapeXml(w.desc)}</desc>
+  </wpt>`).join('');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Thaï Malin" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>${escapeXml(tripLabel)}</name></metadata>${gpxBody}
+</gpx>`;
+}
+
+function downloadGpx(summaryDays, tripLabel){
+  const gpx = generateGpx(summaryDays, tripLabel);
+  const blob = new Blob([gpx], { type: 'application/gpx+xml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'thaimalin-itineraire.gpx';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function renderItinerary(container, cityListIn, totalDays, excursion, shareInfo){
+  usedSitesGlobal.clear();
+  usedRestaurantsGlobal.clear();
+
+  container.innerHTML = '<p class="tip">Génération en cours…</p>';
+  const alloc = allocateDays(cityListIn, totalDays);
+
+  await Promise.all(alloc.cities.map(loadCityData));
+
+  let html = '';
+
+  if(alloc.dropped.length){
+    html += `<div class="warning-box">⚠️ ${totalDays} jours, c'est trop court pour inclure ${alloc.dropped.map(c=>CITIES[c].label).join(', ')} correctement — retiré(s) du parcours. Augmente la durée pour les inclure.</div>`;
+  }
+
+  const distinctRegions = new Set(alloc.cities.map(c => CITIES[c].region));
+  if(distinctRegions.size >= 3){
+    html += `<div class="warning-box">⚠️ Ce parcours traverse plusieurs régions éloignées de la Thaïlande — prévoir des trajets plus longs (vol intérieur recommandé entre certaines étapes).</div>`;
+  }
+
+  let dayCounter = 1;
+  const citiesWithDays = [];
+  const summaryDays = [];
+
+  for(let idx = 0; idx < alloc.cities.length; idx++){
+    const city = alloc.cities[idx];
+    const nDays = alloc.days[city];
+    citiesWithDays.push({ city, nDays });
+    const cityData = dataCache[city];
+    const cityDays = buildCityDays(cityData, nDays);
+
+    cityDays.forEach(day => {
+      html += `<div class="day-card">
+        <span class="city-tag">${CITIES[city].emoji} ${CITIES[city].label}</span>
+        <h3>Jour ${dayCounter}${day.districts.length ? ' — ' + day.districts.join(' + ') : ''}</h3>
+        ${day.restaurants.length ? `<p><strong>🍽️ Déjeuner/dîner conseillé :</strong> ${day.restaurants.join(', ')}</p>` : ''}
+        ${day.site ? `<p><strong>📍 À voir :</strong> ${day.site.name}${day.site.desc ? ' — ' + day.site.desc : ''}</p>` : ''}
+        ${day.sparse ? `<p class="sparse-notice">🛠️ Cette étape est encore en cours d'enrichissement sur le site — contenu limité pour le moment.</p>` : ''}
+      </div>`;
+      summaryDays.push({
+        dayNumber: dayCounter,
+        city: CITIES[city].label,
+        districts: day.districts,
+        restaurants: day.restaurants,
+        site: day.site ? day.site.name : null,
+        lat: day.centroid ? day.centroid.lat : (day.site ? day.site.lat : null),
+        lng: day.centroid ? day.centroid.lng : (day.site ? day.site.lng : null),
+        siteLat: day.site ? day.site.lat : null,
+        siteLng: day.site ? day.site.lng : null
+      });
+      dayCounter++;
+    });
+
+    if(alloc.transportBuffer && idx === 0 && alloc.cities.length > 1){
+      html += `<div class="day-card" style="opacity:.8">
+        <h3>Jour ${dayCounter} — Trajet vers ${CITIES[alloc.cities[idx+1]].label}</h3>
+        <p class="tip">Journée réservée au transport (vol intérieur, bus ou ferry selon les villes).</p>
+      </div>`;
+      summaryDays.push({ dayNumber: dayCounter, city: 'Trajet', districts: [], restaurants: [], site: null });
+      dayCounter++;
+    }
+  }
+
+  try{
+    localStorage.setItem('thaimalin_saved_itinerary', JSON.stringify({
+      cities: alloc.cities.map(c => CITIES[c].label),
+      totalDays,
+      days: summaryDays,
+      savedAt: new Date().toISOString()
+    }));
+  } catch(e){ /* stockage indisponible */ }
+
+  if(excursion){
+    html += `<div class="excursion-box"><h4>💡 Extension possible : ${excursion.name}</h4><p>${excursion.text}</p></div>`;
+  }
+
+  const budget = estimateBudget(citiesWithDays, 'moyen');
+  if(budget.found){
+    try{ localStorage.setItem('thaimalin_budget_estimate', JSON.stringify(budget)); }
+    catch(e){ /* stockage indisponible */ }
+  }
+  if(budget.found){
+    html += `<div class="budget-box">
+      <p>💰 Budget estimé pour ce séjour (niveau confort, par personne)</p>
+      <p class="amount">${budget.low.toLocaleString('fr-FR')}–${budget.high.toLocaleString('fr-FR')} THB${budget.openEnded ? ' et +' : ''}</p>
+    </div>`;
+  }
+
+  html += `<div class="itin-actions">
+    <button class="btn" onclick="window.print()">🖨️ Imprimer / PDF</button>
+    <button class="btn regenBtn" style="background:transparent;border:1px solid var(--gold);color:#fff">🔄 Générer un autre parcours</button>
+    <button class="btn shareBtn" style="background:transparent;border:1px solid var(--gold);color:#fff">🔗 Copier le lien de cet itinéraire</button>
+    <button class="btn gpxBtn" style="background:transparent;border:1px solid var(--gold);color:#fff">📥 Exporter en GPX</button>
+  </div>`;
+
+  container.innerHTML = html;
+
+  const gpxBtn = container.querySelector('.gpxBtn');
+  if(gpxBtn){
+    gpxBtn.addEventListener('click', () => {
+      downloadGpx(summaryDays, `Itinéraire Thaï Malin - ${alloc.cities.map(c => CITIES[c].label).join(', ')}`);
+    });
+  }
+
+  const regenBtn = container.querySelector('.regenBtn');
+  if(regenBtn){
+    regenBtn.addEventListener('click', () => renderItinerary(container, cityListIn, totalDays, excursion, shareInfo));
+  }
+
+  const shareBtn = container.querySelector('.shareBtn');
+  if(shareBtn && shareInfo){
+    shareBtn.addEventListener('click', async () => {
+      const params = new URLSearchParams();
+      params.set('mode', shareInfo.mode);
+      params.set('days', totalDays);
+      if(shareInfo.mode === 'guide'){
+        params.set('theme', shareInfo.themeId);
+      } else {
+        params.set('cities', shareInfo.cities.join(','));
+      }
+      const url = `${location.origin}${location.pathname}?${params.toString()}`;
+      try{
+        await navigator.clipboard.writeText(url);
+        shareBtn.textContent = '✅ Lien copié !';
+      } catch(e){
+        shareBtn.textContent = url;
+      }
+      setTimeout(() => { shareBtn.textContent = '🔗 Copier le lien de cet itinéraire'; }, 2500);
+    });
+  }
+}
+
+/* ===================== ONGLET GUIDÉ ===================== */
+const themeGrid = document.getElementById('themeGrid');
+let selectedTheme = THEMES[0];
+
+function renderThemeGrid(){
+  themeGrid.innerHTML = THEMES.map(t => `
+    <div class="theme-card${t.id === selectedTheme.id ? ' selected' : ''}" data-theme="${t.id}">
+      <h3>${t.label}</h3>
+      <p>${t.desc}</p>
+    </div>
+  `).join('');
+  themeGrid.querySelectorAll('.theme-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedTheme = THEMES.find(t => t.id === card.dataset.theme);
+      renderThemeGrid();
+    });
+  });
+}
+renderThemeGrid();
+
+document.getElementById('guideGenerateBtn').addEventListener('click', () => {
+  const totalDays = parseInt(document.getElementById('guideDays').value, 10) || 10;
+  const container = document.getElementById('guideResult');
+  renderItinerary(container, selectedTheme.cities, totalDays, selectedTheme.excursion, { mode:'guide', themeId: selectedTheme.id });
+});
+
+/* ===================== ONGLET PERSONNALISÉ ===================== */
+const cityChecklist = document.getElementById('cityChecklist');
+cityChecklist.innerHTML = Object.keys(CITIES).map(c => `
+  <label class="city-check">
+    <input type="checkbox" value="${c}">
+    ${CITIES[c].emoji} ${CITIES[c].label}
+  </label>
+`).join('');
+
+function generatePerso(){
+  const checked = Array.from(cityChecklist.querySelectorAll('input:checked')).map(i => i.value);
+  const container = document.getElementById('persoResult');
+  if(checked.length === 0){
+    container.innerHTML = '<p class="tip">Coche au moins une ville pour générer un itinéraire.</p>';
+    return;
+  }
+  const sorted = checked.sort((a,b) => REGION_ORDER.indexOf(CITIES[a].region) - REGION_ORDER.indexOf(CITIES[b].region));
+  const totalDays = parseInt(document.getElementById('persoDays').value, 10) || 10;
+  renderItinerary(container, sorted, totalDays, null, { mode:'perso', cities: sorted });
+}
+document.getElementById('persoGenerateBtn').addEventListener('click', generatePerso);
+
+/* ===================== ONGLET SURPRENDS-MOI ===================== */
+let lastSurpriseThemeId = null;
+
+document.getElementById('surpriseBtn').addEventListener('click', () => {
+  const totalDays = parseInt(document.getElementById('surpriseDays').value, 10) || 10;
+  const reveal = document.getElementById('surpriseReveal');
+  const result = document.getElementById('surpriseResult');
+
+  // on évite de retomber deux fois de suite sur le même thème
+  let candidates = THEMES.filter(t => t.id !== lastSurpriseThemeId);
+  if(candidates.length === 0) candidates = THEMES;
+  const picked = candidates[Math.floor(Math.random() * candidates.length)];
+  lastSurpriseThemeId = picked.id;
+
+  result.innerHTML = '';
+  reveal.innerHTML = `<p class="tip">🎲 Tirage en cours...</p>`;
+
+  setTimeout(() => {
+    reveal.innerHTML = `<div class="excursion-box"><h4>🎉 Ta destination surprise : ${picked.label}</h4><p>${picked.desc}</p></div>`;
+    renderItinerary(result, picked.cities, totalDays, picked.excursion, { mode:'guide', themeId: picked.id });
+  }, 700);
+});
+
+/* ===================== ONGLET SUR MESURE ===================== */
+const smCityChecks = document.getElementById('smCityChecks');
+smCityChecks.innerHTML = Object.keys(CITIES).map(c => `
+  <label><input type="checkbox" name="Villes qui donnent envie" value="${CITIES[c].label}"> ${CITIES[c].emoji} ${CITIES[c].label}</label>
+`).join('');
+
+document.getElementById('surmesureForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('smStatus');
+  status.textContent = 'Envoi en cours...';
+  try{
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if(res.ok){
+      status.textContent = '✅ Demande envoyée ! Tu recevras une réponse par email prochainement.';
+      form.reset();
+    } else {
+      status.textContent = "❌ Une erreur s'est produite, réessaie ou écris-nous directement à contact@thaimalin.fr.";
+    }
+  } catch(err){
+    status.textContent = "❌ Une erreur s'est produite, réessaie ou écris-nous directement à contact@thaimalin.fr.";
+    console.error(err);
+  }
+});
+
+/* ===================== LECTURE D'UN LIEN D'ITINÉRAIRE PARTAGÉ ===================== */
+(function loadFromSharedLink(){
+  const params = new URLSearchParams(location.search);
+  const mode = params.get('mode');
+  if(!mode) return;
+
+  const days = parseInt(params.get('days'), 10) || 10;
+
+  if(mode === 'guide'){
+    const themeId = params.get('theme');
+    const theme = THEMES.find(t => t.id === themeId);
+    if(!theme) return;
+    selectedTheme = theme;
+    renderThemeGrid();
+    document.getElementById('guideDays').value = days;
+    document.querySelector('.itin-tabs button[data-tab="guide"]').click();
+    document.getElementById('guideGenerateBtn').click();
+  } else if(mode === 'perso'){
+    const citiesParam = (params.get('cities') || '').split(',').filter(Boolean);
+    if(citiesParam.length === 0) return;
+    cityChecklist.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.checked = citiesParam.includes(cb.value);
+    });
+    document.getElementById('persoDays').value = days;
+    document.querySelector('.itin-tabs button[data-tab="perso"]').click();
+    generatePerso();
+  }
+})();
+</script>
+</body>
+</html>

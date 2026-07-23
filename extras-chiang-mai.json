@@ -1,0 +1,146 @@
+{
+  "sites": [
+    {
+      "name": "Wat Phra That Doi Suthep",
+      "desc": "Temple perché sur la montagne surplombant toute la ville, l'un des plus sacrés du nord.",
+      "price": "50 THB",
+      "hours": "06:00–18:00",
+      "tip": "306 marches pour accéder au temple, ou funiculaire payant pour les moins courageux.",
+      "lat": 18.8047,
+      "lng": 98.9217
+    },
+    {
+      "name": "Wat Chedi Luang",
+      "desc": "Immense temple en ruines datant du 14e siècle, au cœur de la vieille ville.",
+      "price": "50 THB",
+      "hours": "08:00–17:00",
+      "tip": "Possibilité d'échanger avec des moines lors des sessions \"Monk Chat\".",
+      "lat": 18.7877,
+      "lng": 98.9868
+    },
+    {
+      "name": "Wat Phra Singh",
+      "desc": "Le temple le plus vénéré de Chiang Mai, abritant le Bouddha Phra Singh.",
+      "price": "Entrée libre (zone principale)",
+      "hours": "06:00–18:00",
+      "tip": "Très animé pendant Songkran (nouvel an thaï, mi-avril).",
+      "lat": 18.7883,
+      "lng": 98.9822
+    },
+    {
+      "name": "Sunday Walking Street",
+      "desc": "Marché piéton dominical le long de Ratchadamnoen Road, artisanat et street food.",
+      "price": "Entrée libre",
+      "hours": "Dim 16:00–24:00",
+      "tip": "Arriver tôt pour profiter des stands avant l'affluence maximale.",
+      "lat": 18.7889,
+      "lng": 98.9853
+    },
+    {
+      "name": "Night Bazaar",
+      "desc": "Marché nocturne permanent, artisanat, vêtements et restaurants.",
+      "price": "Entrée libre",
+      "hours": "18:00–23:00 environ",
+      "tip": "Marchander est courant et attendu sur la plupart des stands.",
+      "lat": 18.7869,
+      "lng": 99.0004
+    },
+    {
+      "name": "Sanctuaire d'éléphants éthique",
+      "desc": "Observation et soins des éléphants sans monte ni spectacle, dans la région de Mae Taeng.",
+      "price": "2000–3500 THB (journée avec transport)",
+      "hours": "Journée complète",
+      "tip": "Bien vérifier que le sanctuaire choisi interdit la monte, pour le bien-être des animaux.",
+      "lat": 19.2180,
+      "lng": 98.8100
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🛺",
+      "title": "Songthaew rouge (rot daeng)",
+      "desc": "Camionnettes rouges partagées, le moyen de transport le plus courant en ville.",
+      "price": "30–50 THB",
+      "hours": "06:00–22:00 environ",
+      "tip": "Fais signe pour monter, indique ta destination avant de grimper à bord.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚕",
+      "title": "Grab & Taxi",
+      "desc": "Pratique pour les trajets directs ou tard le soir.",
+      "price": "Selon trajet",
+      "hours": "24h/24",
+      "tip": "Grab fonctionne bien à Chiang Mai, souvent moins cher que le songthaew pour plusieurs personnes.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Idéal pour explorer Doi Suthep et les environs à son rythme.",
+      "price": "150–250 THB/jour",
+      "hours": "",
+      "tip": "Casque obligatoire, prudence dans les rues étroites de la vieille ville.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚗",
+      "title": "Location de voiture",
+      "desc": "Utile pour une excursion à Pai ou Doi Inthanon.",
+      "price": "800–1200 THB/jour",
+      "hours": "",
+      "tip": "Réserver à l'avance, la route vers Pai comporte de nombreux virages.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses dans la vieille ville.",
+      "price": "400–1000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Mai"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★ à Nimman ou dans la vieille ville.",
+      "price": "1200–2500 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Mai"
+    },
+    {
+      "tier": "Premium",
+      "desc": "137 Pillars House, Ping Nakara…",
+      "price": "3000–5500 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Mai"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Four Seasons Resort Chiang Mai, Dhara Dhevi…",
+      "price": "7000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Chiang+Mai"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "800–1400 THB/jour",
+      "desc": "Guesthouse, street food et songthaew."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2000–3800 THB/jour",
+      "desc": "Hôtel confortable, restaurants et une activité incluse (sanctuaire d'éléphants)."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "6000 THB et +",
+      "desc": "Hôtel de charme haut de gamme, gastronomie et excursions privées."
+    }
+  ]
+}

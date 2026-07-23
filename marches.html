@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tous les marchés de Thaïlande — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Le répertoire complet des marchés des 10 destinations du guide, filtrable par ville et par jour de la semaine — locaux, touristiques ou matinaux.">
+<link rel="canonical" href="https://thaimalin.fr/marches">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thaï Malin">
+<meta property="og:title" content="Tous les marchés de Thaïlande | Thaï Malin">
+<meta property="og:description" content="Le répertoire complet des marchés du guide, filtrable par ville et par jour de la semaine.">
+<meta property="og:url" content="https://thaimalin.fr/marches">
+<meta property="og:locale" content="fr_FR">
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1800');}
+
+.market-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.market-filters select{padding:10px 14px;border-radius:10px;border:1px solid #444;background:#1a1e26;color:#fff;font-size:14px}
+
+.day-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.day-tabs button{background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;padding:7px 14px;border-radius:16px;cursor:pointer;font-size:13px}
+.day-tabs button.active{background:var(--gold,#d4af37);color:#11151b;font-weight:bold}
+
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.market-card{background:#1a1e26;border:1px solid #333;border-radius:14px;padding:16px}
+.market-card h3{margin:0 0 4px;color:var(--gold,#d4af37);font-size:17px}
+.market-card .city-tag{display:inline-block;background:#2a2f3a;padding:2px 10px;border-radius:12px;font-size:11px;margin-bottom:8px}
+.market-card .badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.market-card .badge-type{font-size:11px;padding:2px 8px;border-radius:10px}
+.badge-local{background:#1e3a24;color:#8fd18a}
+.badge-tourist{background:#3a2e1e;color:#e0b070}
+.badge-morning{background:#1e2a3a;color:#7fb8e0}
+.market-card p{margin:4px 0;font-size:14px;color:#ccc}
+.market-card .day-when{font-size:13px;color:var(--gold,#d4af37);font-weight:bold}
+#marketEmpty{display:none;text-align:center;color:#888;margin-top:30px}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+<details class="dest-menu">
+<summary>🌏 Destinations</summary>
+<div class="dest-list">
+<a href="/bangkok-premium">🏯 Bangkok</a>
+<a href="/phuket-premium">🏝️ Phuket</a>
+<a href="/krabi-premium">🧗 Krabi</a>
+<a href="/koh-samui-premium">🏖️ Koh Samui</a>
+<a href="/chiang-mai-premium">⛰️ Chiang Mai</a>
+<a href="/pattaya-premium">🌃 Pattaya</a>
+<a href="/hua-hin-premium">🏯 Hua Hin</a>
+<a href="/koh-tao-premium">🐢 Koh Tao</a>
+<a href="/koh-phangan-premium">🏝️ Koh Phangan</a>
+<a href="/chiang-rai-premium">⛰️ Chiang Rai</a>
+</div>
+</details>
+<button id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span><span></span><span></span>
+</button>
+<div id="navLinks">
+<a href="/">Accueil</a>
+<a href="itineraire.html">🗺️ Créer mon itinéraire</a>
+<a href="calendrier.html">📅 Calendrier saisons</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🛍️ Tous les marchés de Thaïlande</h1>
+<p>Le répertoire complet des 10 destinations, filtrable par ville et par jour — pour ne plus jamais arriver un jour où le marché que tu voulais voir est fermé.</p>
+</div>
+</section>
+
+<section id="marches">
+<div class="market-filters">
+  <select id="cityFilter"></select>
+</div>
+<div class="day-tabs" id="dayTabs"></div>
+<div class="market-grid" id="marketGrid"></div>
+<p id="marketEmpty">Aucun marché ne correspond à ce filtre.</p>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Tous les marchés de Thaïlande — fichier maître</p>
+</footer>
+
+<script>
+/* ===================== MENU + NAV MOBILE ===================== */
+document.querySelectorAll('.dest-menu').forEach(menu => {
+  const summary = menu.querySelector('summary');
+  if(!summary) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    const isOpen = menu.hasAttribute('open');
+    document.querySelectorAll('.dest-menu[open]').forEach(m => { if(m !== menu) m.removeAttribute('open'); });
+    if(isOpen){ menu.removeAttribute('open'); } else { menu.setAttribute('open', ''); }
+  });
+  menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => menu.removeAttribute('open')); });
+});
+document.addEventListener('click', e => {
+  document.querySelectorAll('.dest-menu[open]').forEach(menu => { if(!menu.contains(e.target)){ menu.removeAttribute('open'); } });
+});
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+/* ===================== DONNÉES ===================== */
+const CITIES = {
+  'bangkok':'🏯 Bangkok', 'phuket':'🏝️ Phuket', 'krabi':'🧗 Krabi', 'koh-samui':'🏖️ Koh Samui',
+  'chiang-mai':'⛰️ Chiang Mai', 'pattaya':'🌃 Pattaya', 'hua-hin':'🏯 Hua Hin', 'koh-tao':'🐢 Koh Tao',
+  'koh-phangan':'🏝️ Koh Phangan', 'chiang-rai':'⛰️ Chiang Rai'
+};
+
+const DAYS = ['tous','lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche','quotidien'];
+const DAY_LABELS = { tous:'Tous', lundi:'Lun', mardi:'Mar', mercredi:'Mer', jeudi:'Jeu', vendredi:'Ven', samedi:'Sam', dimanche:'Dim', quotidien:'Tous les jours' };
+
+// type: 'local' | 'tourist' | 'morning'
+const MARKETS = [
+  // Bangkok
+  { city:'bangkok', name:'Chatuchak Weekend Market', day:['samedi','dimanche'], type:'tourist', hours:'9h-18h', desc:"L'un des plus grands marchés du monde — artisanat, mode, plantes, antiquités." },
+  { city:'bangkok', name:'Wang Lang Market', day:['quotidien'], type:'local', hours:'9h-18h', desc:"Marché de quartier qui nourrit le personnel de l'hôpital Siriraj, juste en face du Grand Palace." },
+  { city:'bangkok', name:'Yaowarat (Chinatown)', day:['quotidien'], type:'tourist', hours:'18h-00h', desc:"Rue principale du quartier chinois, street food et enseignes lumineuses — fréquenté aussi par les locaux." },
+  { city:'bangkok', name:'Talad Rot Fai (marché du train)', day:['vendredi','samedi','dimanche'], type:'tourist', hours:'17h-00h', desc:"Marché vintage/rétro, vêtements d'occasion et food trucks, ambiance jeune et branchée." },
+
+  // Phuket
+  { city:'phuket', name:'Lard Yai (Sunday Walking Street)', day:['dimanche'], type:'tourist', hours:'16h-22h', desc:"Marché nocturne du dimanche sur Thalang Road, dans le vieux Phuket Town." },
+  { city:'phuket', name:'Phuket Weekend Night Market (Indy Market)', day:['samedi','dimanche'], type:'tourist', hours:'16h-22h', desc:"Grand marché du week-end, moo ping et brochettes grillées à foison." },
+  { city:'phuket', name:'Marché central (Ranong Road)', day:['quotidien'], type:'local', hours:'6h-14h', desc:"Le cœur de la vie locale phukétoise, marché de gros et de frais depuis des générations." },
+  { city:'phuket', name:'Banzaan Market', day:['quotidien'], type:'local', hours:'8h-22h', desc:"Marché frais le jour, marché nocturne street food le soir — plus local que Bangla juste à côté." },
+
+  // Krabi
+  { city:'krabi', name:'Krabi Town Walking Street', day:['vendredi','samedi','dimanche'], type:'tourist', hours:'17h-22h', desc:"Marché nocturne du week-end près du Vogue Department Store, khao mok gai et spécialités locales." },
+  { city:'krabi', name:'Chao Fah Night Market', day:['quotidien'], type:'local', hours:'17h-22h', desc:"Marché plus local et posé que le Walking Street, près de la jetée de Krabi Town." },
+  { city:'krabi', name:'Maharaj Market', day:['quotidien'], type:'morning', hours:'6h-11h', desc:"Marché matinal où les habitants achètent produits frais et petit-déjeuner à emporter." },
+  { city:'krabi', name:'Ao Nang Night Market', day:['quotidien'], type:'tourist', hours:'17h-23h', desc:"Le marché touristique d'Ao Nang, fruits de mer et souvenirs." },
+  { city:'krabi', name:'Ao Nang Local Market', day:['quotidien'], type:'local', hours:'6h-18h', desc:"Un vrai marché local caché en plein cœur d'Ao Nang, prix nettement inférieurs au bord de plage." },
+
+  // Koh Samui
+  { city:'koh-samui', name:"Fisherman's Village Walking Street", day:['vendredi'], type:'tourist', hours:'17h-23h', desc:"Marché nocturne hebdomadaire à Bophut, dans les maisons sino-portugaises restaurées." },
+  { city:'koh-samui', name:'Marché matinal de Nathon', day:['quotidien'], type:'morning', hours:'6h-8h', desc:"Marché où les habitants font leurs courses quotidiennes dès l'aube, très peu de touristes." },
+  { city:'koh-samui', name:'Hua Thanon Market', day:['quotidien'], type:'local', hours:'variable', desc:"Marché traditionnel principalement fréquenté par les habitants, fruits de mer fraîchement débarqués." },
+  { city:'koh-samui', name:'Maenam Walking Street', day:['jeudi'], type:'local', hours:'17h-22h', desc:"Marché nocturne plus modeste et local que ceux de Chaweng ou Bophut." },
+  { city:'koh-samui', name:'Lamai Night Market', day:['quotidien'], type:'tourist', hours:'17h-22h', desc:"Marché nocturne de Lamai, street food et souvenirs." },
+
+  // Chiang Mai
+  { city:'chiang-mai', name:'Sunday Walking Street (Ratchadamnoen)', day:['dimanche'], type:'tourist', hours:'16h-24h', desc:"Le plus grand marché piéton de Chiang Mai, artisanat et street food dans toute la vieille ville." },
+  { city:'chiang-mai', name:'Saturday Walking Street (Wualai)', day:['samedi'], type:'tourist', hours:'17h-24h', desc:"Version plus authentique et moins fréquentée du marché du dimanche." },
+  { city:'chiang-mai', name:'Warorot Market', day:['quotidien'], type:'local', hours:'6h-18h', desc:"Le grand marché local ouvert toute la journée — même les Bangkokois viennent pour le sai oua." },
+  { city:'chiang-mai', name:'Night Bazaar (Chang Klan)', day:['quotidien'], type:'tourist', hours:'18h-23h', desc:"Marché nocturne permanent, le plus commercial et touristique de la ville." },
+  { city:'chiang-mai', name:'Chang Phuak Gate Market', day:['quotidien'], type:'local', hours:'17h-22h', desc:"Marché de rue nettement plus local que le Night Bazaar, porte nord de la vieille ville." },
+
+  // Pattaya
+  { city:'pattaya', name:'Thepprasit Night Market', day:['vendredi','samedi','dimanche'], type:'tourist', hours:'16h-23h', desc:"L'un des plus grands marchés du week-end à Pattaya, vêtements et street food." },
+  { city:'pattaya', name:'Lan Pho Market', day:['quotidien'], type:'local', hours:'6h-12h', desc:"Marché aux poissons de Naklua où les habitants achètent la pêche du jour." },
+  { city:'pattaya', name:'Ratanakorn Market', day:['quotidien'], type:'local', hours:'6h-18h', desc:"Marché de quartier pour la vie de tous les jours, loin des circuits touristiques." },
+  { city:'pattaya', name:'Jomtien Night Market', day:['quotidien'], type:'tourist', hours:'17h-22h', desc:"Marché nocturne en bord de plage de Jomtien." },
+
+  // Hua Hin
+  { city:'hua-hin', name:'Cicada Market', day:['vendredi','samedi','dimanche'], type:'tourist', hours:'16h-23h', desc:"Marché artisanal et culturel, concerts et food court." },
+  { city:'hua-hin', name:'Hua Hin Night Market', day:['quotidien'], type:'tourist', hours:'17h-23h', desc:"Le marché nocturne central de Hua Hin, fruits de mer grillés." },
+  { city:'hua-hin', name:'Chatchai Market', day:['quotidien'], type:'morning', hours:'5h-12h', desc:"Marché de gros matinal où les restaurants locaux s'approvisionnent chaque jour." },
+  { city:'hua-hin', name:'Pai Mai Market (marché du mardi)', day:['mardi'], type:'local', hours:'variable', desc:"Marché d'appoint pour les habitants, uniquement le mardi, prix nettement inférieurs." },
+  { city:'hua-hin', name:'Huana Market', day:['quotidien'], type:'local', hours:'17h-22h', desc:"Marché du soir authentique où les touristes sont rares." },
+
+  // Koh Tao
+  { city:'koh-tao', name:'Mae Haad Night Market', day:['quotidien'], type:'tourist', hours:'17h-22h30', desc:"Le marché nocturne principal près de la jetée de Mae Haad." },
+  { city:'koh-tao', name:'Marché matinal de Mae Haad', day:['quotidien'], type:'morning', hours:'7h-10h', desc:"Jok et patongo pour le petit-déjeuner des habitants qui travaillent au port." },
+  { city:'koh-tao', name:'Street food de Chalok Baan Kao', day:['quotidien'], type:'local', hours:'17h-21h', desc:"Secteur nettement plus calme que Sairee ou Mae Haad, quelques stands fréquentés par les habitants." },
+
+  // Koh Phangan
+  { city:'koh-phangan', name:'Pantip Market (Thong Sala Night Market)', day:['quotidien'], type:'local', hours:'11h-23h', desc:"Marché quotidien avec des prix pensés pour les résidents, le point de repère de l'île." },
+  { city:'koh-phangan', name:'Thong Sala Walking Street', day:['samedi'], type:'tourist', hours:'16h-22h', desc:"Le grand marché du samedi soir de Thong Sala, plus touristique que Pantip." },
+  { city:'koh-phangan', name:'Chaloklum Sunday Market', day:['dimanche'], type:'local', hours:'17h-21h', desc:"Plus petit et plus local que celui de Thong Sala, dans le village de pêcheurs du nord." },
+  { city:'koh-phangan', name:'Marché frais de Thong Sala', day:['quotidien'], type:'morning', hours:'6h-12h', desc:"Marché d'approvisionnement quotidien des habitants, occupe toute une rue." },
+
+  // Chiang Rai
+  { city:'chiang-rai', name:'Saturday Walking Street (Thanalai Road)', day:['samedi'], type:'tourist', hours:'17h-22h', desc:"Le grand marché du samedi soir de Chiang Rai, artisanat et cultures des tribus des collines." },
+  { city:'chiang-rai', name:'Sunday Night Market', day:['dimanche'], type:'local', hours:'17h-22h', desc:"Moins fréquenté et plus local que le marché du samedi, ambiance non-touristique." },
+  { city:'chiang-rai', name:'Night Bazaar', day:['quotidien'], type:'tourist', hours:'18h-23h', desc:"Marché nocturne permanent du centre-ville, hot pot et spectacles." },
+  { city:'chiang-rai', name:'Marché municipal du centre-ville', day:['quotidien'], type:'local', hours:'6h-18h', desc:"Le vrai cœur commerçant de Chiang Rai, où les habitants se retrouvent au quotidien." }
+];
+
+const TYPE_BADGES = {
+  local: { label:'🏠 Local', cls:'badge-local' },
+  tourist: { label:'📸 Touristique', cls:'badge-tourist' },
+  morning: { label:'🌅 Marché matinal', cls:'badge-morning' }
+};
+
+/* ===================== FILTRES ===================== */
+const cityFilter = document.getElementById('cityFilter');
+cityFilter.innerHTML = '<option value="tous">🌏 Toutes les villes</option>' +
+  Object.entries(CITIES).map(([k,label]) => `<option value="${k}">${label}</option>`).join('');
+
+let activeDay = 'tous';
+const dayTabs = document.getElementById('dayTabs');
+dayTabs.innerHTML = DAYS.map(d => `<button data-day="${d}" class="${d === 'tous' ? 'active' : ''}">${DAY_LABELS[d]}</button>`).join('');
+dayTabs.addEventListener('click', e => {
+  if(e.target.tagName !== 'BUTTON') return;
+  dayTabs.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeDay = e.target.dataset.day;
+  renderMarkets();
+});
+cityFilter.addEventListener('change', renderMarkets);
+
+function renderMarkets(){
+  const city = cityFilter.value;
+  const filtered = MARKETS.filter(m => {
+    const cityMatch = city === 'tous' || m.city === city;
+    const dayMatch = activeDay === 'tous' || m.day.includes(activeDay) || m.day.includes('quotidien');
+    return cityMatch && dayMatch;
+  });
+
+  const grid = document.getElementById('marketGrid');
+  const empty = document.getElementById('marketEmpty');
+
+  grid.innerHTML = filtered.map(m => {
+    const badge = TYPE_BADGES[m.type];
+    const dayText = m.day.includes('quotidien') ? 'Tous les jours' : m.day.map(d => DAY_LABELS[d]).join(', ');
+    return `
+      <div class="market-card">
+        <span class="city-tag">${CITIES[m.city]}</span>
+        <h3>${m.name}</h3>
+        <div class="badges"><span class="badge-type ${badge.cls}">${badge.label}</span></div>
+        <p class="day-when">📅 ${dayText} · ${m.hours}</p>
+        <p>${m.desc}</p>
+      </div>
+    `;
+  }).join('');
+
+  empty.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+renderMarkets();
+</script>
+</body>
+</html>

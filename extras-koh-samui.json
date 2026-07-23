@@ -1,0 +1,137 @@
+{
+  "sites": [
+    {
+      "name": "Big Buddha Temple (Wat Phra Yai)",
+      "desc": "Statue dorée de 12m visible depuis la mer, symbole de l'île.",
+      "price": "Gratuit (dons acceptés)",
+      "hours": "06:00–18:00",
+      "tip": "Tenue correcte demandée, prévoir de quoi couvrir épaules et genoux.",
+      "lat": 9.5966,
+      "lng": 100.0508
+    },
+    {
+      "name": "Wat Plai Laem",
+      "desc": "Temple coloré avec une grande statue de Guanyin (déesse de la miséricorde) sur un lac.",
+      "price": "Gratuit",
+      "hours": "07:00–18:00",
+      "tip": "À combiner facilement avec la visite du Big Buddha, à 5 minutes en scooter.",
+      "lat": 9.5980,
+      "lng": 100.0540
+    },
+    {
+      "name": "Namuang Waterfall",
+      "desc": "Cascade à deux niveaux au cœur de la forêt tropicale, bassin naturel pour se baigner.",
+      "price": "Entrée libre (parking payant)",
+      "hours": "08:00–17:00",
+      "tip": "Le niveau supérieur nécessite une petite randonnée, chaussures fermées conseillées.",
+      "lat": 9.4950,
+      "lng": 99.9700
+    },
+    {
+      "name": "Hin Ta Hin Yai Rocks",
+      "desc": "Formations rocheuses naturelles à la forme suggestive, à Lamai.",
+      "price": "Gratuit",
+      "hours": "Accessible toute la journée",
+      "tip": "Site touristique très fréquenté, marché artisanal juste à côté.",
+      "lat": 9.4640,
+      "lng": 100.0570
+    },
+    {
+      "name": "Ang Thong National Marine Park",
+      "desc": "Archipel de 42 îles karstiques, lagon caché et point de vue panoramique.",
+      "price": "300 THB (parc) + excursion",
+      "hours": "Départs le matin en excursion à la journée",
+      "tip": "Réserver une excursion avec kayak inclus pour explorer le lagon de Koh Mae Ko.",
+      "lat": 9.6800,
+      "lng": 99.6500
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚕",
+      "title": "Grab & Taxi",
+      "desc": "Disponible à Chaweng et Lamai, moins fréquent ailleurs sur l'île.",
+      "price": "Selon trajet",
+      "hours": "Journée",
+      "tip": "Les taxis de l'île pratiquent souvent des tarifs fixes élevés, comparer avec Grab.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Le moyen le plus pratique pour explorer l'île à son rythme.",
+      "price": "200–300 THB/jour",
+      "hours": "",
+      "tip": "Route circulaire bien entretenue, casque obligatoire.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "⛴️",
+      "title": "Ferry",
+      "desc": "Liaisons régulières avec Koh Phangan, Koh Tao et le continent (Surat Thani).",
+      "price": "Selon compagnie",
+      "hours": "Plusieurs départs par jour",
+      "tip": "Réserver en ligne à l'avance en haute saison.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚐",
+      "title": "Songthaew",
+      "desc": "Camionnettes partagées circulant sur la route circulaire de l'île.",
+      "price": "20–60 THB",
+      "hours": "06:00–20:00 environ",
+      "tip": "Fais signe pour monter, indique ta destination, paie en descendant.",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses à Lamai ou Maenam.",
+      "price": "500–1200 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Samui"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★ proches des plages.",
+      "price": "1500–3000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Samui"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Santiburi, Nora Buri Resort…",
+      "price": "3500–6000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Samui"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Four Seasons Resort Koh Samui, W Koh Samui…",
+      "price": "8000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Koh+Samui"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "1000–1700 THB/jour",
+      "desc": "Guesthouse, street food et scooter."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2500–4500 THB/jour",
+      "desc": "Hôtel confortable, restaurants et une excursion incluse (Ang Thong)."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "7000 THB et +",
+      "desc": "Resort haut de gamme, gastronomie et excursions privées."
+    }
+  ]
+}

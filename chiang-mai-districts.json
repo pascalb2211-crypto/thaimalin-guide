@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Vieille Ville (Old City)",
+    "emoji": "🛕",
+    "cat": "culture",
+    "desc": "Cœur historique entouré de remparts et de douves, dizaines de temples bouddhistes.",
+    "attractions": "Wat Phra Singh, Wat Chedi Luang, Sunday Walking Street",
+    "restaurant": "Huen Phen",
+    "hotel": "Rachamankha",
+    "tip": "Se déplacer à pied ou à vélo, la zone est compacte et agréable à explorer.",
+    "img": "https://images.unsplash.com/photo-1589394760138-3c76ea9cd75e?q=80&w=1200",
+    "lat": 18.7883,
+    "lng": 98.9853
+  },
+  {
+    "name": "Nimman (Nimmanhaemin)",
+    "emoji": "☕",
+    "cat": "food",
+    "desc": "Quartier branché prisé des digital nomades, cafés de spécialité et boutiques design.",
+    "attractions": "One Nimman, MAYA Lifestyle Shopping Center",
+    "restaurant": "Ristr8to",
+    "hotel": "U Nimman Chiang Mai",
+    "tip": "Excellent wifi partout, base idéale pour un séjour prolongé.",
+    "img": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200",
+    "lat": 18.7975,
+    "lng": 98.9668
+  },
+  {
+    "name": "Night Bazaar (Chang Klan)",
+    "emoji": "🛍️",
+    "cat": "shopping",
+    "desc": "Marché nocturne permanent et rue commerçante animée, artisanat et souvenirs.",
+    "attractions": "Chiang Mai Night Bazaar, Kalare Night Bazaar",
+    "restaurant": "The Riverside Bar & Restaurant",
+    "hotel": "Shangri-La Chiang Mai",
+    "tip": "Marchander est courant, surtout sur les stands d'artisanat.",
+    "img": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200",
+    "lat": 18.7869,
+    "lng": 99.0004
+  },
+  {
+    "name": "Riverside (bord de la rivière Ping)",
+    "emoji": "🌉",
+    "cat": "nightlife",
+    "desc": "Bars et restaurants en bord de rivière, ambiance décontractée en soirée.",
+    "attractions": "Wat Ket Karam, croisière sur la rivière Ping",
+    "restaurant": "The Good View",
+    "hotel": "Ping Nakara Boutique Hotel",
+    "tip": "Très agréable pour un dîner au coucher du soleil face à la rivière.",
+    "img": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200",
+    "lat": 18.7880,
+    "lng": 99.0020
+  },
+  {
+    "name": "Santitham",
+    "emoji": "🍜",
+    "cat": "food",
+    "desc": "Quartier local et étudiant, street food authentique à petits prix.",
+    "attractions": "Marché de nuit de Santitham",
+    "restaurant": "SP Chicken",
+    "hotel": "Yesterday Hotel",
+    "tip": "Beaucoup moins touristique que le centre, idéal pour manger comme un local.",
+    "img": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200",
+    "lat": 18.8010,
+    "lng": 98.9740
+  },
+  {
+    "name": "Chang Phueak",
+    "emoji": "🏮",
+    "cat": "culture",
+    "desc": "Secteur autour de la porte nord de la vieille ville, marché local animé.",
+    "attractions": "Chang Phueak Market, porte Chang Phueak",
+    "restaurant": "Chicken Rice Nai Tao",
+    "hotel": "Auberges locales du quartier",
+    "tip": "Le marché est excellent tôt le matin pour le petit-déjeuner local.",
+    "img": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200",
+    "lat": 18.8000,
+    "lng": 98.9840
+  },
+  {
+    "name": "Doi Suthep",
+    "emoji": "⛰️",
+    "cat": "culture",
+    "desc": "Montagne surplombant la ville avec son temple sacré et sa nature environnante.",
+    "attractions": "Wat Phra That Doi Suthep, Palais royal de Bhubing",
+    "restaurant": "Café de Doi Suthep",
+    "hotel": "Proud Phu Fah Resort",
+    "tip": "Monter tôt le matin pour éviter les groupes touristiques et la chaleur.",
+    "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200",
+    "lat": 18.8047,
+    "lng": 98.9217
+  }
+]

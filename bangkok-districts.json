@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Rattanakosin",
+    "emoji": "🛕",
+    "cat": "culture",
+    "desc": "Temples et patrimoine historique.",
+    "attractions": "Grand Palace, Wat Pho, Wat Arun",
+    "restaurant": "Thipsamai",
+    "hotel": "Sala Rattanakosin",
+    "tip": "Prévoir une tenue adaptée pour les temples.",
+    "img": "https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=1200",
+    "lat": 13.7500,
+    "lng": 100.4913
+  },
+  {
+    "name": "Siam",
+    "emoji": "🛍️",
+    "cat": "shopping",
+    "desc": "Shopping et divertissement.",
+    "attractions": "MBK, Siam Paragon, CentralWorld",
+    "restaurant": "Somboon Seafood",
+    "hotel": "Siam Kempinski",
+    "tip": "Idéal pour une journée shopping.",
+    "img": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1200",
+    "lat": 13.7460,
+    "lng": 100.5340
+  },
+  {
+    "name": "Sukhumvit",
+    "emoji": "🏙️",
+    "cat": "nightlife",
+    "desc": "Vie nocturne, centres commerciaux, restaurants.",
+    "attractions": "Benjakitti Park, EmQuartier",
+    "restaurant": "Cabbages & Condoms",
+    "hotel": "Grande Centre Point",
+    "tip": "Quartier vivant le soir.",
+    "img": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?q=80&w=1200",
+    "lat": 13.7383,
+    "lng": 100.5610
+  },
+  {
+    "name": "Chinatown",
+    "emoji": "🍜",
+    "cat": "food",
+    "desc": "Street food et marchés.",
+    "attractions": "Yaowarat",
+    "restaurant": "Nai Ek Roll Noodles",
+    "hotel": "Shanghai Mansion",
+    "tip": "Venir en soirée pour la street food.",
+    "img": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200",
+    "lat": 13.7404,
+    "lng": 100.5087
+  },
+  {
+    "name": "Ari",
+    "emoji": "🎨",
+    "cat": "food",
+    "desc": "Cafés branchés et ambiance locale.",
+    "attractions": "Cafés et boutiques",
+    "restaurant": "Mother Roaster",
+    "hotel": "Craftsman Hotel",
+    "tip": "Ambiance locale et détendue.",
+    "img": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200",
+    "lat": 13.7797,
+    "lng": 100.5448
+  },
+  {
+    "name": "Lumpini",
+    "emoji": "🌿",
+    "cat": "culture",
+    "desc": "Parc, détente et jogging.",
+    "attractions": "Parc Lumpini",
+    "restaurant": "Baan Khanitha",
+    "hotel": "SO/ Bangkok",
+    "tip": "Parfait le matin pour éviter la chaleur.",
+    "img": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200",
+    "lat": 13.7300,
+    "lng": 100.5418
+  }
+]

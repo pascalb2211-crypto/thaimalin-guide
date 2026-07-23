@@ -1,0 +1,146 @@
+{
+  "sites": [
+    {
+      "name": "Big Buddha Phuket",
+      "desc": "Immense statue de Bouddha blanc de 45m, vue panoramique sur toute l'île.",
+      "price": "Entrée libre (dons acceptés)",
+      "hours": "06:00–19:00",
+      "tip": "Prévoir une tenue couvrant épaules et genoux.",
+      "lat": 7.8277,
+      "lng": 98.3121
+    },
+    {
+      "name": "Wat Chalong",
+      "desc": "Le temple bouddhiste le plus important et le plus visité de Phuket.",
+      "price": "Gratuit",
+      "hours": "06:00–18:00",
+      "tip": "Très animé les jours de fête bouddhiste, à éviter si tu cherches le calme.",
+      "lat": 7.8464,
+      "lng": 98.3389
+    },
+    {
+      "name": "Promthep Cape",
+      "desc": "Le point de vue le plus célèbre de l'île pour admirer le coucher de soleil.",
+      "price": "Gratuit",
+      "hours": "Accessible toute la journée",
+      "tip": "Arriver 45 min avant le coucher de soleil pour avoir une bonne place.",
+      "lat": 7.7622,
+      "lng": 98.2977
+    },
+    {
+      "name": "Îles Phi Phi (excursion à la journée)",
+      "desc": "Excursion en bateau vers les îles emblématiques de Maya Bay et Phi Phi Don.",
+      "price": "1200–2500 THB selon formule",
+      "hours": "Départs le matin, retour en fin d'après-midi",
+      "tip": "Réserver une excursion en petit groupe plutôt qu'un grand bateau pour éviter la foule.",
+      "lat": 7.7407,
+      "lng": 98.7784
+    },
+    {
+      "name": "Phuket Old Town — Sunday Walking Street",
+      "desc": "Marché nocturne du dimanche dans les rues sino-portugaises du vieux Phuket.",
+      "price": "Entrée libre",
+      "hours": "Dim 16:00–22:00",
+      "tip": "Vient tôt pour profiter des meilleurs stands de street food avant l'affluence.",
+      "lat": 7.8850,
+      "lng": 98.3900
+    },
+    {
+      "name": "James Bond Island (Phang Nga Bay)",
+      "desc": "Excursion en bateau/kayak dans la baie de Phang Nga, célèbre depuis le film James Bond.",
+      "price": "1500–3000 THB selon formule",
+      "hours": "Départs le matin",
+      "tip": "Privilégier une excursion en petit groupe en kayak pour explorer les grottes marines.",
+      "lat": 8.2700,
+      "lng": 98.5060
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚕",
+      "title": "Grab & Taxi",
+      "desc": "Pratique pour les trajets en ville et vers l'aéroport.",
+      "price": "Selon trajet",
+      "hours": "24h/24",
+      "tip": "Les taxis de rue négocient souvent des prix élevés, préférer Grab.",
+      "buttonText": "Télécharger Grab",
+      "buttonUrl": "https://www.grab.com/th/en/download/"
+    },
+    {
+      "icon": "🛵",
+      "title": "Location de scooter",
+      "desc": "Idéal pour explorer les plages de l'ouest et le sud de l'île.",
+      "price": "200–350 THB/jour",
+      "hours": "",
+      "tip": "Casque obligatoire, prudence sur les routes vallonnées de Patong à Kata.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚐",
+      "title": "Songthaew",
+      "desc": "Camionnettes partagées reliant Phuket Town aux principales plages.",
+      "price": "30–50 THB",
+      "hours": "07:00–17:00 environ",
+      "tip": "Moins pratique après la tombée de la nuit, les départs se font plus rares.",
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "icon": "🚗",
+      "title": "Location de voiture",
+      "desc": "Pratique pour rayonner sur toute l'île en toute liberté.",
+      "price": "800–1200 THB/jour",
+      "hours": "",
+      "tip": "Réserver à l'avance en haute saison (novembre à février).",
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ],
+  "hotels": [
+    {
+      "tier": "Économique",
+      "desc": "Guesthouses à Patong ou Karon.",
+      "price": "500–1200 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Phuket"
+    },
+    {
+      "tier": "Confort",
+      "desc": "Hôtels 3★ proches des plages.",
+      "price": "1500–3000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Phuket"
+    },
+    {
+      "tier": "Premium",
+      "desc": "Cape Sienna, Centara Kata Resort…",
+      "price": "3500–6000 THB/nuit",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Phuket"
+    },
+    {
+      "tier": "Luxe",
+      "desc": "Banyan Tree Phuket, Trisara…",
+      "price": "8000 THB et +",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Phuket"
+    }
+  ],
+  "budget": [
+    {
+      "icon": "🎒",
+      "tier": "Petit budget",
+      "price": "1000–1700 THB/jour",
+      "desc": "Guesthouse, street food et songthaew."
+    },
+    {
+      "icon": "🧳",
+      "tier": "Budget moyen",
+      "price": "2500–4500 THB/jour",
+      "desc": "Hôtel confortable, restaurants et une excursion incluse."
+    },
+    {
+      "icon": "💎",
+      "tier": "Budget élevé",
+      "price": "7000 THB et +",
+      "desc": "Resort haut de gamme, gastronomie et excursions privées."
+    }
+  ]
+}

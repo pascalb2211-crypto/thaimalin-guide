@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion — Guide Premium | Thaï Malin</title>
+<meta name="description" content="Connecte-toi ou crée ton compte pour accéder au Guide Premium Thaï Malin.">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--hero-img:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1800');}
+
+.auth-box{max-width:420px;margin:0 auto;background:#1a1e26;border:1px solid #333;border-radius:16px;padding:30px}
+.auth-tabs{display:flex;gap:8px;margin-bottom:20px}
+.auth-tabs button{flex:1;background:transparent;border:1px solid var(--gold,#d4af37);color:#fff;padding:10px;border-radius:10px;cursor:pointer}
+.auth-tabs button.active{background:var(--gold,#d4af37);color:#11151b;font-weight:bold}
+.auth-form{display:none}
+.auth-form.active{display:block}
+.auth-form label{display:block;margin:14px 0 6px;font-size:14px;color:#ccc}
+.auth-form input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #444;background:#11151b;color:#fff;font-size:15px}
+.auth-form button[type="submit"]{margin-top:20px;width:100%;border:none;cursor:pointer}
+#authMessage{margin-top:16px;font-size:14px;text-align:center}
+#authMessage.error{color:#e08a8a}
+#authMessage.success{color:#8fd18a}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div><strong style="color:#d4af37;font-size:22px">Thaï Malin</strong></div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>🔐 Mon compte</h1>
+<p>Connecte-toi ou crée ton compte pour accéder au Guide Premium.</p>
+</div>
+</section>
+
+<section id="auth">
+<div class="auth-box">
+  <div class="auth-tabs">
+    <button data-form="signin" class="active">Se connecter</button>
+    <button data-form="signup">Créer un compte</button>
+  </div>
+
+  <form class="auth-form active" id="signinForm">
+    <label for="signinEmail">Email</label>
+    <input type="email" id="signinEmail" required>
+    <label for="signinPassword">Mot de passe</label>
+    <input type="password" id="signinPassword" required>
+    <button type="submit" class="btn">Se connecter</button>
+  </form>
+
+  <form class="auth-form" id="signupForm">
+    <label for="signupEmail">Email</label>
+    <input type="email" id="signupEmail" required>
+    <label for="signupPassword">Mot de passe (6 caractères minimum)</label>
+    <input type="password" id="signupPassword" minlength="6" required>
+    <button type="submit" class="btn">Créer mon compte</button>
+  </form>
+
+  <p id="authMessage"></p>
+</div>
+</section>
+
+<footer>
+<h2>Thaï Malin</h2>
+<p>Connexion — fichier maître</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script>
+document.querySelectorAll('.auth-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.auth-tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.form + 'Form').classList.add('active');
+    document.getElementById('authMessage').textContent = '';
+  });
+});
+
+function getRedirectTarget(){
+  const params = new URLSearchParams(location.search);
+  return params.get('redirect') || 'account.html';
+}
+
+document.getElementById('signinForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('authMessage');
+  msg.textContent = 'Connexion en cours...';
+  msg.className = '';
+  const email = document.getElementById('signinEmail').value;
+  const password = document.getElementById('signinPassword').value;
+
+  const { error } = await signIn(email, password);
+  if(error){
+    msg.textContent = "Email ou mot de passe incorrect.";
+    msg.className = 'error';
+    return;
+  }
+  msg.textContent = "Connecté ! Redirection...";
+  msg.className = 'success';
+  setTimeout(() => { location.href = getRedirectTarget(); }, 800);
+});
+
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('authMessage');
+  msg.textContent = 'Création du compte...';
+  msg.className = '';
+  const email = document.getElementById('signupEmail').value;
+  const password = document.getElementById('signupPassword').value;
+
+  const { error } = await signUp(email, password);
+  if(error){
+    msg.textContent = "Erreur : " + error.message;
+    msg.className = 'error';
+    return;
+  }
+  msg.textContent = "Compte créé ! Tu peux maintenant te connecter avec l'onglet \"Se connecter\".";
+  msg.className = 'success';
+});
+</script>
+</body>
+</html>
